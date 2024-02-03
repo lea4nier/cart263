@@ -1,13 +1,23 @@
 class GameState {
     constructor() {
         let numCars = 5;
+        let numPedestrians = 3;
         this.traffic = [];
 
+        //create cars
         for (let i = 0; i < numCars; i++) {
             let x = random(0, width);
             let y = random(0, height);
             let car = new Car(x, y);
             this.traffic.push(car);
+        }
+
+        //create pedestrians 
+        for (let i = 0; i < numPedestrians; i++) {
+            let x = random(0, width);
+            let y = random(0, height);
+            let pedestrian = new Pedestrian(x, y);
+            this.traffic.push(pedestrian);
         }
     }
 
