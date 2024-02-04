@@ -2,6 +2,7 @@ class GameState {
     constructor() {
         let numCars = 5;
         let numPedestrians = 3;
+        let numBuses = 2;
         this.traffic = [];
 
         //create cars
@@ -10,6 +11,14 @@ class GameState {
             let y = random(0, height);
             let car = new Car(x, y);
             this.traffic.push(car);
+        }
+
+        // Create buses
+        for (let i = 0; i < numBuses; i++) {
+            let x = random(0, width);
+            let y = random(0, height);
+            let bus = new Bus(x, y); // Create a new Bus instance
+            this.traffic.push(bus); // Add the bus to the traffic array
         }
 
         //create pedestrians 
