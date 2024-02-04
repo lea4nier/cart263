@@ -19,10 +19,28 @@ class GameState {
             let pedestrian = new Pedestrian(x, y);
             this.traffic.push(pedestrian);
         }
+
+
+        let numPotholes = 2; // Define numPotholes here
+        this.potholes = []; // Array to store potholes
+        // create potholes
+        for (let i = 0; i < numPotholes; i++) {
+            let x = random(0, width);
+            let y = random(0, height);
+            let potholeWidth = random(50, 100); // Random width for pothole
+            let potholeHeight = random(30, 90); // Random height for pothole
+            let pothole = new Pothole(x, y, potholeWidth, potholeHeight);
+            this.potholes.push(pothole); // Add pothole to the array
+        }
     }
 
     draw() {
         background(0);
+        // Draw potholes
+        for (let i = 0; i < this.potholes.length; i++) {
+            let pothole = this.potholes[i];
+            pothole.display(); // Draw the pothole
+        }
         // Set random directions for all vehicles
         for (let i = 0; i < this.traffic.length; i++) {
             let traffic = this.traffic[i];
@@ -40,5 +58,7 @@ class GameState {
                 traffic.wrap();
             }
         }
+
+
     }
 }

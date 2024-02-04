@@ -40,9 +40,17 @@ class Pedestrian extends Traffic {
      * Displays the pedestrian as a simple rectangle (for demonstration purposes)
      */
     display() {
-        // Set the fill color
-        fill(255); // White color
-        // Draw the pedestrian as a rectangle
+        fill(255);
         rect(this.x, this.y, this.width, this.height);
+
+        // Draw two dots for eyes
+        fill(0);
+        ellipse(this.x + this.width * 0.25, this.y + this.height * 0.25, 5, 5); // Left eye
+        ellipse(this.x + this.width * 0.75, this.y + this.height * 0.25, 5, 5); // Right eye
+
+        // Draw a smile
+        strokeWeight(2);
+        line(this.x + this.width * 0.3, this.y + this.height * 0.7, this.x + this.width * 0.7, this.y + this.height * 0.7); // Smile
     }
 }
+
