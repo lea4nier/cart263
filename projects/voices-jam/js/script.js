@@ -33,7 +33,7 @@ function setup() {
 
     // We set the state by creating an object of the correct
     // type, in this case we want a title screen
-    currentState = new TitleState();
+    currentState = new GameState();
 
 }
 
