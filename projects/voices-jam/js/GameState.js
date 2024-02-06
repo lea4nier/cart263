@@ -1,5 +1,30 @@
 class GameState {
     constructor() {
+        this.speechRecognizer = new p5.SpeechRec();
+        this.speechRecognizer.continuous = true;
+        this.speechRecognizer.interimResults = true; // Enable partial results
+        this.speechRecognizer.onResult = () => this.onResult();
+        this.speechRecognizer.start();
+        this.commands = [
+            {
+                "command": "up",
+                "callback": () => this.moveChickenDown()
+            },
+            {
+                "command": "down",
+                "callback": () => this.moveChickenUp()
+            },
+            {
+                "command": "left",
+                "callback": () => this.moveChickenRight()
+            },
+            {
+                "command": "right",
+                "callback": () => this.moveChickenLeft()
+            }
+        ];
+
+
         //set up chicken image that user controls
         this.chickenAsset = loadImage('assets/images/chicken.PNG'); //preload chickenAsset image
         this.chicken = new Chicken(width / 2, height - 50, this.chickenAsset);
@@ -49,6 +74,39 @@ class GameState {
         }
     }
 
+    // Speech recognition callback function
+    onResult() {
+        if (!this.speechRecognizer.resultValue) {
+            return;
+        }
+        console.log(this.speechRecognizer.resultString);
+        for (let command of this.commands) {
+            if (this.speechRecognizer.resultString.toLowerCase() === command.command) {
+                // Execute the corresponding callback
+                command.callback();
+                break;
+            }
+        }
+    }
+
+    moveChickenUp() {
+        this.chicken.moveUp();
+    }
+
+    // Method to move the chicken down
+    moveChickenDown() {
+        this.chicken.moveDown();
+    }
+
+    // Method to move the chicken left
+    moveChickenLeft() {
+        this.chicken.moveLeft();
+    }
+
+    // Method to move the chicken right
+    moveChickenRight() {
+        this.chicken.moveRight();
+    }
     //
     draw() {
         background(0);
@@ -76,7 +134,22 @@ class GameState {
                 traffic.wrap();
             }
         }
-
-
     }
 }
+
+// function moveChickenUp() {
+//     this.chicken.moveUp();
+// }
+
+// function moveChickenDown() {
+//     this.chicken.moveDown();
+// }
+
+// function moveChickenLeft() {
+//     this.chicken.moveLeft();
+// }
+
+// function moveChickenRight() {
+//     this.chicken.moveRight();
+// }
+
