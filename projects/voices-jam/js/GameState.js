@@ -30,31 +30,31 @@ class GameState {
         this.chicken = new Chicken(width / 2, height - 50, this.chickenAsset);
 
         //create an array for traffic superclass 
-        let numCars = 5;
-        let numPedestrians = 3;
+        let numCars = 1;
+        let numPedestrians = 1;
         let numBuses = 2;
         this.traffic = [];
 
         //create cars
         for (let i = 0; i < numCars; i++) {
-            let x = random(0, width);
-            let y = random(0, height);
+            let x = random(0, windowWidth);
+            let y = random(0, windowHeight);
             let car = new Car(x, y);
             this.traffic.push(car);
         }
 
         // create buses
         for (let i = 0; i < numBuses; i++) {
-            let x = random(0, width);
-            let y = random(0, height);
+            let x = random(0, windowWidth);
+            let y = random(0, windowHeight);
             let bus = new Bus(x, y); // Create a new Bus instance
             this.traffic.push(bus); // Add the bus to the traffic array
         }
 
         //create pedestrians 
         for (let i = 0; i < numPedestrians; i++) {
-            let x = random(0, width);
-            let y = random(0, height);
+            let x = random(0, windowWidth);
+            let y = random(0, windowHeight);
             let pedestrian = new Pedestrian(x, y);
             this.traffic.push(pedestrian);
         }

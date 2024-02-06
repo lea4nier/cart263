@@ -37,11 +37,19 @@ class Chicken {
     }
 
     checkHit(traffic) {
-        if (this.x > traffic.x - traffic.width / 2 &&
-            this.x < traffic.x + traffic.width / 2 &&
-            this.y > traffic.y - traffic.height / 2 &&
-            this.y < traffic.y + traffic.height / 2) {
+
+        if (this.x < traffic.x + traffic.width / 2 &&
+            this.x + this.width > traffic.x - traffic.width / 2 &&
+            this.y < traffic.y + traffic.height / 2 &&
+            this.y + this.height > traffic.y - traffic.height / 2) {
             this.alive = false;
         }
+
+        // if (this.x - this.width / 2 < traffic.x + traffic.width / 2 &&
+        //     this.x + this.width / 2 > traffic.x - traffic.x / 2 &&
+        //     this.y - this.height / 2 < traffic.y + traffic.height / 2 &&
+        //     this.y + this.height / 2 > traffic.y - traffic.height / 2) {
+        //     this.alive = false; console.log('hit');
+        // }
     }
 }
