@@ -132,25 +132,22 @@ class GameState {
                 traffic.move();
                 // Wrap the vehicle around the canvas
                 traffic.wrap();
-                this.chicken.checkHit(traffic); console.log("check");
+                this.chicken.checkHit(traffic);
+            }
+
+            // Check if the pedestrian is still alive, if not
+            // switch to the dead state
+            if (!this.chicken.alive) {
+                // Go to the death state
+                currentState = new GameOver();
+            }
+
+            // Check if the pedestrian crossed the road (top of canvas)
+            // If so, switch to the win state
+            if (this.chicken.y < 0) {
+                // Go to the success state
+                currentState = new GameBeat();
             }
         }
     }
 }
-
-// function moveChickenUp() {
-//     this.chicken.moveUp();
-// }
-
-// function moveChickenDown() {
-//     this.chicken.moveDown();
-// }
-
-// function moveChickenLeft() {
-//     this.chicken.moveLeft();
-// }
-
-// function moveChickenRight() {
-//     this.chicken.moveRight();
-// }
-

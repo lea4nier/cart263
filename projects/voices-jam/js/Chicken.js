@@ -7,7 +7,7 @@ class Chicken {
         this.img = chickenAsset; // Chicken image
         this.width = 100; // Chicken width
         this.height = 100; // Chicken height
-        this.speed = 10; // Speed of chicken movement
+        this.speed = 50; // Speed of chicken movement
         this.alive = true;
     }
 
