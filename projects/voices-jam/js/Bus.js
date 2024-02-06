@@ -1,3 +1,6 @@
+/**
+Class for buses! 
+*/
 class Bus extends Traffic {
     constructor(x, y) {
         // Call the superclass constructor to initialize the position

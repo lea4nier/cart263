@@ -1,5 +1,10 @@
 class GameState {
     constructor() {
+        //set up chicken image that user controls
+        this.chickenAsset = loadImage('assets/images/chicken.PNG'); //preload chickenAsset image
+        this.chicken = new Chicken(width / 2, height - 50, this.chickenAsset);
+
+        //create an array for traffic superclass 
         let numCars = 5;
         let numPedestrians = 3;
         let numBuses = 2;
@@ -13,7 +18,7 @@ class GameState {
             this.traffic.push(car);
         }
 
-        // Create buses
+        // create buses
         for (let i = 0; i < numBuses; i++) {
             let x = random(0, width);
             let y = random(0, height);
@@ -29,9 +34,10 @@ class GameState {
             this.traffic.push(pedestrian);
         }
 
+        //array for potholes
+        let numPotholes = 2;
+        this.potholes = [];
 
-        let numPotholes = 2; // Define numPotholes here
-        this.potholes = []; // Array to store potholes
         // create potholes
         for (let i = 0; i < numPotholes; i++) {
             let x = random(0, width);
@@ -43,9 +49,12 @@ class GameState {
         }
     }
 
+    //
     draw() {
         background(0);
-        // Draw potholes
+
+        this.chicken.display();
+        // draw potholes
         for (let i = 0; i < this.potholes.length; i++) {
             let pothole = this.potholes[i];
             pothole.display(); // Draw the pothole

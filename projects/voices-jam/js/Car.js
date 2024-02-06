@@ -1,19 +1,21 @@
 class Car extends Traffic {
     /**
-     * Constructor to initialize the car object with position, dimensions, speed, and color!
+     * constructor to initialize the car object with position, dimensions, speed, and color!
      */
     constructor(x, y) {
-        // Create the vehicle part with the superclass constructor
+        // create the vehicle part with the superclass constructor
         super(x, y);
-        // Define the dimensions and speed
+        // define the dimensions 
         this.width = 50;
         this.height = 20;
-        this.speed = 10;
+        //defines speed
+        this.speed = 7;
+        //defines car colors
         this.color = this.randomColor();
     }
 
     /**
-     * Method to set the color of the car randomly to green or blue
+     * method to set the color of the car randomly to green or blue
      */
     randomColor() {
         if (random(1) < 0.5) {
@@ -26,7 +28,7 @@ class Car extends Traffic {
     }
 
     /**
-    Displays the car as a rectangle
+    displays the car as a rectangle
     */
     display() {
         super.display();
@@ -39,7 +41,7 @@ class Car extends Traffic {
     }
 
     /**
-    Draws the car and calls functions from Traffic class 
+    draws the car and calls functions from Traffic class 
     */
     draw() {
         background(0); //clear the canvas 
