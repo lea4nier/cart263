@@ -7,7 +7,8 @@ class Chicken {
         this.img = chickenAsset; // Chicken image
         this.width = 100; // Chicken width
         this.height = 100; // Chicken height
-        this.speed = 5; // Speed of chicken movement
+        this.speed = 10; // Speed of chicken movement
+        this.alive = true;
     }
 
     // displays the chicken image
@@ -33,5 +34,14 @@ class Chicken {
     // moves the chicken right
     moveRight() {
         this.x += this.speed;
+    }
+
+    checkHit(traffic) {
+        if (this.x > traffic.x - traffic.width / 2 &&
+            this.x < traffic.x + traffic.width / 2 &&
+            this.y > traffic.y - traffic.height / 2 &&
+            this.y < traffic.y + traffic.height / 2) {
+            this.alive = false;
+        }
     }
 }

@@ -132,6 +132,7 @@ class GameState {
                 traffic.move();
                 // Wrap the vehicle around the canvas
                 traffic.wrap();
+                this.chicken.checkHit(traffic); console.log("check");
             }
         }
     }
