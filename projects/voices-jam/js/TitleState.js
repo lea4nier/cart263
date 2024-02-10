@@ -6,6 +6,7 @@ class TitleState {
     }
 
     draw() {
+        background(0);
         image(this.title, windowWidth - windowWidth, windowHeight - windowHeight, windowWidth, windowHeight);
         let elapsed = millis() - this.startTime;
         if (elapsed > this.duration) {
