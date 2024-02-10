@@ -1,4 +1,6 @@
-// class for Chicken object controlled by user's speech 
+/**
+* class for Chicken object controlled by user's speech
+*/
 class Chicken {
     constructor(x, y, chickenAsset) {
         //constructor for Chicken properties
@@ -36,8 +38,10 @@ class Chicken {
         this.x += this.speed;
     }
 
+    /**
+     * function to check if any object from traffic superclass has hit the chicken
+     */
     checkHit(traffic) {
-
         if (this.x < traffic.x + traffic.width / 2 &&
             this.x + this.width > traffic.x - traffic.width / 2 &&
             this.y < traffic.y + traffic.height / 2 &&
@@ -45,11 +49,5 @@ class Chicken {
             this.alive = false;
         }
 
-        // if (this.x - this.width / 2 < traffic.x + traffic.width / 2 &&
-        //     this.x + this.width / 2 > traffic.x - traffic.x / 2 &&
-        //     this.y - this.height / 2 < traffic.y + traffic.height / 2 &&
-        //     this.y + this.height / 2 > traffic.y - traffic.height / 2) {
-        //     this.alive = false; console.log('hit');
-        // }
     }
 }

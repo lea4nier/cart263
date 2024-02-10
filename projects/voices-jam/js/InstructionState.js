@@ -1,4 +1,10 @@
+/**
+* class for Instruction State of game 
+*/
 class InstructionState {
+    /**
+    * constructor to set up timer 
+    */
     constructor() {
         this.startTime = millis();
         this.duration = 10000; // time limit of 10 seconds during game 
@@ -26,13 +32,13 @@ class InstructionState {
         fill('pink');
         text('say "up", "down", "left", or "right" to help the chicken cross the road', windowWidth / 4, windowHeight / 2.5);
 
-
+        //if the timer is running
         if (this.timerRunning) {
             //calculate the time passed since the start of the state
             let elapsed = millis() - this.startTime;
             if (elapsed > this.duration) {
-                currentState = new GameState();  // If 10 seconds pass, change the state to GameState
-                this.timerRunning = false; // Stop the timer
+                currentState = new GameState();  // if 10 seconds pass, change the state to GameState
+                this.timerRunning = false; // stop the timer
             }
         } else {
             // if the timer is not running (mouse has been pressed), switch to TitleState

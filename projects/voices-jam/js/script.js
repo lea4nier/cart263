@@ -2,16 +2,16 @@
 Opposite Day
 Léa Fournier
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+In this game the user speaks into the microphone to help the chicken cross the road. 
+But uh oh! It's opposite day, so when the user says "up" the chicken goes down and when the user says "right" the chicken goes left! 
 */
 
 "use strict";
-// let speechRecognizer = new p5.SpeechRec();
+
 let currentState;
 
 /**
-Description of preload
+nothing to preload
 */
 function preload() {
 
@@ -19,40 +19,23 @@ function preload() {
 
 
 /**
-Description of setup
+set up current state, canvas, and background
 */
 function setup() {
-    // 2. Tell the program the function to call if the recognizer hears something
-    // speechRecognizer.onResult = handleResult;
-    // // 3. Tell the recognizer to start listening
-    // speechRecognizer.start();
 
     createCanvas(windowWidth, windowHeight);
-    background(0, 0, 0);
-    angleMode(DEGREES);
+    background(0, 0, 0); //set background to black 
 
-    // We set the state by creating an object of the correct
-    // type, in this case we want a title screen
-    currentState = new GameState();
+    // set current state to title state 
+    currentState = new TitleState();
 
 }
 
 
 /**
-Description of draw()
+calls draw method of the current state
 */
 function draw() {
-    // currentState.draw()
+    // If the current state is TitleState this will call the TitleState class draw()
     currentState.draw();
 }
-
-
-
-// function handleResult() {
-//     // 4. Check if there is definitely a result
-//     if (speechRecognizer.resultValue === true) {
-//         // 5. If there is, print it out in the console
-//         console.log(speechRecognizer.resultString);
-//         // (e.g. speechRecognizer.resultString has what was said inside it)
-//     }
-// }

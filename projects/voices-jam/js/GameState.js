@@ -1,38 +1,44 @@
+/**
+* class for Game State of the game! 
+*/
 class GameState {
     constructor() {
+        //set up speech recognition
         this.speechRecognizer = new p5.SpeechRec();
-        this.speechRecognizer.continuous = true;
-        this.speechRecognizer.interimResults = true; // Enable partial results
-        this.speechRecognizer.onResult = () => this.onResult();
-        this.speechRecognizer.start();
+        this.speechRecognizer.continuous = true; // enable continuous recognition
+        this.speechRecognizer.interimResults = true; // enable partial results
+        this.speechRecognizer.onResult = () => this.onResult(); // set callback for recognition results
+        this.speechRecognizer.start(); //start speech recognition at the beginning of state
+
+        //define commands for speech recognition
         this.commands = [
             {
-                "command": "up",
-                "callback": () => this.moveChickenDown()
+                "command": "up", //if the user says "up"
+                "callback": () => this.moveChickenDown()  //calls moveChickedDown function
             },
             {
-                "command": "down",
-                "callback": () => this.moveChickenUp()
+                "command": "down",  //if the user says "down"
+                "callback": () => this.moveChickenUp() //calls moveChickenUp function
             },
             {
-                "command": "left",
-                "callback": () => this.moveChickenRight()
+                "command": "left",  //if the user says "left"
+                "callback": () => this.moveChickenRight() //calls moveChickenRight function
             },
             {
-                "command": "right",
-                "callback": () => this.moveChickenLeft()
+                "command": "right", //if the user says "right"
+                "callback": () => this.moveChickenLeft() //calls moveChickenLeft function
             }
         ];
 
 
         //set up chicken image that user controls
         this.chickenAsset = loadImage('assets/images/chicken.PNG'); //preload chickenAsset image
-        this.chicken = new Chicken(width / 2, height - 50, this.chickenAsset);
+        this.chicken = new Chicken(width / 2, height - 50, this.chickenAsset); //chicken spawns at the bottom of the screen 
 
         //create an array for traffic superclass 
-        let numCars = 3;
-        let numPedestrians = 5;
-        let numBuses = 2;
+        let numCars = 3;  // 3 cars 
+        let numPedestrians = 5;  //5 pedestrians 
+        let numBuses = 2;  //2 buses 
         this.traffic = [];
 
         //create cars
@@ -74,40 +80,57 @@ class GameState {
         }
     }
 
-    // Speech recognition callback function
+    // speech recognition callback function
     onResult() {
+        //check if there is a result 
         if (!this.speechRecognizer.resultValue) {
             return;
         }
+
+        //log the recognized speech 
         console.log(this.speechRecognizer.resultString);
         for (let command of this.commands) {
             if (this.speechRecognizer.resultString.toLowerCase() === command.command) {
-                // Execute the corresponding callback
+                // executes the corresponding callback
                 command.callback();
                 break;
             }
         }
     }
 
+    /**
+    * moves the chicken up 
+    */
     moveChickenUp() {
         this.chicken.moveUp();
     }
 
-    // Method to move the chicken down
+    /**
+    * moves the chicken down 
+    */
     moveChickenDown() {
         this.chicken.moveDown();
     }
 
-    // Method to move the chicken left
+    /**
+    * moves the chicken left 
+    */
     moveChickenLeft() {
         this.chicken.moveLeft();
     }
 
-    // Method to move the chicken right
+    /**
+    * moves the chicken right 
+    */
     moveChickenRight() {
         this.chicken.moveRight();
     }
-    //
+
+
+    /**
+    * draws the Game State
+    * updates objects and checks for collisions 
+    */
     draw() {
         background(0);
 
@@ -117,35 +140,36 @@ class GameState {
             let pothole = this.potholes[i];
             pothole.display(); // Draw the pothole
         }
-        // Set random directions for all vehicles
+
+        // set random directions for all objects in traffic superclass 
         for (let i = 0; i < this.traffic.length; i++) {
             let traffic = this.traffic[i];
-            traffic.display(); // Draw the vehicle
-            // Get a random number
+            traffic.display(); // Draw the object
+            // get a random number
             let r = random(0, 1);
-            // Half the time make the vehicle move left
+            // half the time make the object move left
             if (r < 0.5) {
                 traffic.vx = -traffic.speed;
             } else {
-                // The other half make it move right
+                // the other half make it move right
                 traffic.vx = traffic.speed;
                 traffic.move();
-                // Wrap the vehicle around the canvas
+                // wrap the object around the canvas
                 traffic.wrap();
                 this.chicken.checkHit(traffic);
             }
 
-            // Check if the pedestrian is still alive, if not
+            // check if the pedestrian is still alive, if not
             // switch to the dead state
             if (!this.chicken.alive) {
-                // Go to the death state
+                // go to the death state
                 currentState = new GameOver();
             }
 
-            // Check if the pedestrian crossed the road (top of canvas)
-            // If so, switch to the win state
+            // check if the pedestrian crossed the road (top of canvas)
+            // if so, switch to the win state
             if (this.chicken.y < 0) {
-                // Go to the success state
+                // go to the winning state
                 currentState = new GameBeat();
             }
         }

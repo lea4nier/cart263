@@ -1,5 +1,5 @@
 /**
-Class for buses! 
+Class for buses that are a part of Traffic superclass! 
 */
 class Bus extends Traffic {
     constructor(x, y) {

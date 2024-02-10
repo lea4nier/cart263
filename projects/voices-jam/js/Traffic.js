@@ -1,23 +1,24 @@
 /**
-Class for all the objects in the road! Code for their position, dimensions, and velocity. 
+Superclass for all the objects in the road! Code for their position, dimensions, and velocity. 
 */
 class Traffic {
+    //constructor for properties of objects in Traffic superclass (Bus/Car/Pedestrian)
     constructor(x, y) {
-        // Position
+        // position
         this.x = x;
         this.y = y;
-        // Dimensions (defined by subclasses)
+        // dimensions (defined by subclasses)
         this.width = undefined;
         this.height = undefined;
-        // Current velocity
+        // current velocity
         this.vx = 0;
         this.vy = 0;
-        // Max speed (defined by subclasses)
+        // max speed (defined by subclasses)
         this.speed = undefined;
     }
 
     /**
-    Function for velocity to move object
+    function for velocity to move object
     */
     move() {
         this.x += this.vx;
@@ -25,7 +26,7 @@ class Traffic {
     }
 
     /**
-    Wraps on the left and right edges of the screen
+    wraps on the left and right edges of the screen
     */
     wrap() {
         if (this.x > width) {
@@ -37,7 +38,7 @@ class Traffic {
     }
 
     /**
-    To be implemented by subclasses. This one does nothing for now.
+    this will be implemented by subclasses. This one does nothing for now.
     */
     display() {
 

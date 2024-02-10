@@ -1,3 +1,6 @@
+/**
+* class for Car object that is a part of traffic superclass!
+*/
 class Car extends Traffic {
     /**
      * constructor to initialize the car object with position, dimensions, speed, and color!
@@ -56,9 +59,6 @@ class Car extends Traffic {
             traffic.move();
             traffic.wrap();
             traffic.display();
-
-
         }
-
     }
 }
