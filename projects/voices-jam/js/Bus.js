@@ -23,10 +23,10 @@ class Bus extends Traffic {
         fill(this.color);
         noStroke();
         rect(this.x, this.y, this.width, this.height);
-        fill(255); // Set the fill color to white for the text
+        fill(255); // set the fill color to white for the text
         textAlign(CENTER, CENTER);
-        textSize(12); // Set the text size
-        text('bus', this.x, this.y); // Display the word "bus" on the bus object
+        textSize(12); //sSet the text size
+        text('bus', this.x, this.y); // display the word "bus" on the bus object
         pop();
     }
 
