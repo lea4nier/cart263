@@ -30,8 +30,8 @@ class GameState {
         this.chicken = new Chicken(width / 2, height - 50, this.chickenAsset);
 
         //create an array for traffic superclass 
-        let numCars = 1;
-        let numPedestrians = 1;
+        let numCars = 3;
+        let numPedestrians = 5;
         let numBuses = 2;
         this.traffic = [];
 

@@ -34,9 +34,13 @@ class Car extends Traffic {
         super.display();
         push();
         rectMode(CENTER);
-        fill(this.color); // Set the fill color to the assigned color
+        fill(this.color); // set the fill color to the assigned color
         noStroke();
         rect(this.x, this.y, this.width, this.height);
+        fill(255); // set the fill color to white for the text
+        textAlign(CENTER, CENTER);
+        textSize(12); //sSet the text size
+        text('car', this.x, this.y); // display the word "car" on the car object
         pop();
     }
 

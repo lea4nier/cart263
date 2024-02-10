@@ -15,11 +15,16 @@ class InstructionState {
         fill('yellow');
         text('click to start', windowWidth / 3, windowHeight / 4);
         fill('cornflowerblue');
-        text('click to start', windowWidth / 3, windowHeight / 2);
+        text('click to start', windowWidth / 3, windowHeight / 3);
         fill('tomato');
-        text('click to start', windowWidth / 3, windowHeight / 8);
+        text('click to start', windowWidth / 3, windowHeight / 5);
         fill('limegreen');
-        text('click to start', windowWidth / 3, windowHeight / 16);
+        text('click to start', windowWidth / 3, windowHeight / 8);  //4 lines of text saying "click to start"
+
+        //instruction text
+        textSize(30);
+        fill('pink');
+        text('say "up", "down", "left", or "right" to help the chicken cross the road', windowWidth / 4, windowHeight / 2.5);
 
 
         if (this.timerRunning) {
