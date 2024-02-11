@@ -1,5 +1,8 @@
 /**
 * class for Pedestrian object that is a part of Traffic superclass  
+Attributions: 
+My game was inspired by code written by Pippin Barr for a lesson I did last semester in CART 253 on Inheritance and polymorphism. I used some of this code to begin my project. 
+Link to code: https://editor.p5js.org/pippinbarr/sketches/OAO9tp_gw 
 */
 class Pedestrian extends Traffic {
     /**
