@@ -3,6 +3,10 @@ Wave 'Hello!' to Arduino!
 Léa Fournier
 
 Detects wave gesture to display text on Arduino LCD Display using Ml5.js and p5.serialport libraries.
+
+Attributions:
+This project was inspired by a Lesson by Professor Jon E. Froehlich and the Makeability Lab at the University of Washington.
+Link to source: https://makeabilitylab.github.io/physcomp/communication/handpose-serial.html 
 ***********************/
 
 
