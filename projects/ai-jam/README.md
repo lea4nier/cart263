@@ -7,7 +7,7 @@ For my project I wanted to challenge myself to use the ml5.js library to interac
 
 When beginning this project, I wanted to do something much more complex, but I ran into many hardware issues with the Arduino which set me back. I went to the computation/sensor lab at Concordia and was able to fix these issues thanks to Sabine and Elio! 
 
-My project utilizes the ml5.js library for hand gesture recognition and the p5.serialport library for serial communication with an Arduino board. The p5.serialport library sends a message from the code running in the browser to the Arduino board, thus allowing for real-time interaction based on detected hand gestures! Once the wave gesture is detected a message is sent via the console through the p5.serialport library to the Arduino board. This message runs the code loaded onto the Arduino which makes the text displayed on the LCD go from "waiting..." to "hello!"
+My project utilizes the ml5.js library for hand gesture recognition and the p5.serialport library for serial communication with an Arduino board. The p5.serialport library sends a message from the code running in the browser to the Arduino board, thus allowing for real-time interaction based on detected hand gestures! I used ml5.js to calculate the distance between the user's thumb tip and pinky tip, and when the distance changes when the user waves their hand the computer detects the gesture. Once the wave gesture is detected a message is sent via the console through the p5.serialport library to the Arduino board. This message runs the code loaded onto the Arduino which makes the text displayed on the LCD go from "waiting..." to "hello!"
 
 ------
 Attributions
