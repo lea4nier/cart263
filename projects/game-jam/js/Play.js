@@ -73,13 +73,24 @@ class Play extends Phaser.Scene {
         const buttonBox = this.add.graphics();
         buttonBox.lineStyle(2, 0xff69b4);
         buttonBox.strokeRect(lightsButton.x - lightsButton.width - 10, lightsButton.y - lightsButton.height - 10, lightsButton.width + 20, lightsButton.height + 20);
-    }
 
+        //add ghost sprite
+        this.ghost = this.add.sprite(600, 400, 'ghost');
+        this.ghost.setScale(2);
+        this.ghost.setVisible(true); // initially hide the ghost
+
+    }
+    toggleGhost() {
+        // toggle visibility of the ghost
+        this.ghost.setVisible(!this.ghost.visible);
+    }
     // method to toggle flashlight visibility
+
     toggleLights() {
         // toggle visibility of flashlight
         console.log('Lights button clicked');
         this.flashlight.visible = !this.flashlight.visible;
+        this.toggleGhost(); // toggle visibility of the ghost
         if (this.flashlight.visible) {
             // make black areas visible
             this.rt.alpha = 1;
