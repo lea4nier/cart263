@@ -1,5 +1,6 @@
 //Play scene 
 // This is the class for the game state of my prototype
+//flashlight effect was created inspired by this tutorial by Tommy Leung: https://blog.ourcade.co/posts/2020/phaser3-fog-of-war-field-of-view-roguelike/ 
 class Play extends Phaser.Scene {
     constructor() {
         super({ key: 'play' }); // call the superclass constructor
