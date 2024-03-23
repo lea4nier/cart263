@@ -21,15 +21,51 @@ class Play extends Phaser.Scene {
             repeat: -1
         });
 
-        // Set up keyboard input
+        // set up keyboard input
         this.cursors = this.input.keyboard.createCursorKeys();
+
+        // create RenderTexture for flashlight effect
+        this.rt = this.make.renderTexture({
+            x: 100,
+            y: 100,
+            width: 4000, // fill entire screen
+            height: 4000, // fill entire screen - I had issues when making it 800 x 600 so I made it much larger 
+        }, true);
+
+        // fill it with black
+        this.rt.fill(0x000000, 100);
+
+        // create a radial gradient alpha mask
+        const gradientMask = this.make.graphics();
+        gradientMask.fillStyle(0xffffff, 1);
+        gradientMask.fillCircle(this.avatar.x, this.avatar.y, 250); // Adjust radius as needed
+
+        // invert alpha to create the spotlight effect
+        gradientMask.generateTexture('gradientMask', 800, 600); // Generate texture with correct dimensions
+
+
+        // apply the gradient as an alpha mask to the RenderTexture
+        this.rt.mask = new Phaser.Display.Masks.BitmapMask(this, gradientMask.createGeometryMask());
+
+        // create a flashlight effect
+        this.flashlight = this.make.image({
+            x: this.avatar.x,
+            y: this.avatar.y,
+            key: 'flashlight',
+            add: false
+        });
+        this.flashlight.scale = 2.5; //flashlight size
+
+        // apply the flashlight as a mask to the RenderTexture
+        this.rt.mask = new Phaser.Display.Masks.BitmapMask(this, this.flashlight);
+        this.rt.mask.invertAlpha = true; // invert alpha to create the spotlight effect
     }
 
     update() {
         // reset avatar velocity
         this.avatar.setVelocity(0);
 
-        // avatar movement and animation with arrow keys
+        // avatar movement and animation with arrow key input
         if (this.cursors.left.isDown) {
             this.avatar.setVelocityX(-100);
             this.avatar.anims.play('walk', true);
@@ -45,5 +81,9 @@ class Play extends Phaser.Scene {
         } else {
             this.avatar.anims.stop('walk');
         }
+
+        // update flashlight position to follow the avatar
+        this.flashlight.x = this.avatar.x;
+        this.flashlight.y = this.avatar.y;
     }
 }
