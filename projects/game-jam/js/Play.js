@@ -13,6 +13,10 @@ class Play extends Phaser.Scene {
         this.background.setOrigin(0, 0); // set the origin of the background sprite
         this.background.setScale(800 / this.background.width, 600 / this.background.height); // scale the background sprite
 
+        // add instruction text at the top of the screen
+        this.instructionText = this.add.text(this.sys.game.config.width / 2, 10, 'Use arrow keys to move', { fontSize: '18px', fill: '#ffffff' });
+        this.instructionText.setOrigin(0.5, 0);
+
         // create avatar sprite
         this.avatar = this.physics.add.sprite(this.cameras.main.centerX, this.cameras.main.centerY, 'avatar'); // create avatar sprite with physics
         this.avatar.setDisplaySize(50, 50); // set the display size of the avatar sprite
@@ -59,6 +63,7 @@ class Play extends Phaser.Scene {
         });
         this.flashlight.scale = 2.5;
 
+
         // apply the flashlight as a mask to the render texture
         this.rt.mask = new Phaser.Display.Masks.BitmapMask(this, this.flashlight);
         this.rt.mask.invertAlpha = true;
@@ -78,6 +83,8 @@ class Play extends Phaser.Scene {
         this.ghost = this.add.sprite(600, 400, 'ghost');
         this.ghost.setScale(2);
         this.ghost.setVisible(true); // initially hide the ghost
+
+        this.ghostSpeed = 0.01;
 
     }
     toggleGhost() {
@@ -125,5 +132,21 @@ class Play extends Phaser.Scene {
         // update flashlight position to follow the avatar
         this.flashlight.x = this.avatar.x;
         this.flashlight.y = this.avatar.y;
+
+        // move ghost towards avatar if lights are off
+        // move ghost towards avatar if lights are off
+        if (this.flashlight.visible) {
+            // calculate direction towards the avatar
+            const dx = this.avatar.x - this.ghost.x;
+            const dy = this.avatar.y - this.ghost.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            // calculate the fraction of the distance to move
+            const fraction = 2 / distance; // adjust this value to control the speed of the ghost
+
+            // move the ghost towards the avatar by a fraction of the distance
+            this.ghost.x += dx * fraction;
+            this.ghost.y += dy * fraction;
+        }
     }
 }
