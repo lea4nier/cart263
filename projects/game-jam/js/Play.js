@@ -1,6 +1,5 @@
-// class play extends phaser.scene
-//
-// This is the class for the game state
+//Play scene 
+// This is the class for the game state of my prototype
 class Play extends Phaser.Scene {
     constructor() {
         super({ key: 'play' }); // call the superclass constructor
