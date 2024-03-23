@@ -1,6 +1,6 @@
 // class play extends phaser.scene
 //
-// initializes the play scene
+// This is the class for the game state
 class Play extends Phaser.Scene {
     constructor() {
         super({ key: 'play' }); // call the superclass constructor
@@ -9,9 +9,9 @@ class Play extends Phaser.Scene {
     // method to create game objects and set up the scene
     create() {
         // create background
-        this.background = this.add.sprite(0, 0, 'background'); // create background sprite
-        this.background.setOrigin(0, 0); // set the origin of the background sprite
-        this.background.setScale(800 / this.background.width, 600 / this.background.height); // scale the background sprite
+        this.background = this.add.sprite(0, 0, 'background'); // display background image
+        this.background.setOrigin(0, 0); // set the origin of the background 
+        this.background.setScale(800 / this.background.width, 600 / this.background.height); // scale the background 
 
         // add instruction text at the top of the screen
         this.instructionText = this.add.text(this.sys.game.config.width / 2, 10, 'Use arrow keys to move', { fontSize: '18px', fill: '#ffffff' });
@@ -41,7 +41,7 @@ class Play extends Phaser.Scene {
         }, true); // create render texture
 
         // fill render texture with black
-        this.rt.fill(0x000000, 100);
+        this.rt.fill(0x000000, 100); //it is a gradient so it looks like lights are off 
 
         // create a radial gradient alpha mask
         const gradientMask = this.make.graphics();
@@ -61,42 +61,42 @@ class Play extends Phaser.Scene {
             key: 'flashlight',
             add: false
         });
-        this.flashlight.scale = 2.5;
+        this.flashlight.scale = 2.5;  //size of flashlight around avatar
 
 
         // apply the flashlight as a mask to the render texture
         this.rt.mask = new Phaser.Display.Masks.BitmapMask(this, this.flashlight);
         this.rt.mask.invertAlpha = true;
 
-        // create a button
+        // create a button for lights
         const lightsButton = this.add.text(this.sys.game.config.width - 100, this.sys.game.config.height - 50, 'Lights', { fontSize: '24px', fill: '#ffffff' });
         lightsButton.setOrigin(1, 1);
         lightsButton.setInteractive();
         lightsButton.on('pointerdown', this.toggleLights, this);
 
-        // create a box around the button
+        // create a pink box around the button
         const buttonBox = this.add.graphics();
         buttonBox.lineStyle(2, 0xff69b4);
         buttonBox.strokeRect(lightsButton.x - lightsButton.width - 10, lightsButton.y - lightsButton.height - 10, lightsButton.width + 20, lightsButton.height + 20);
 
         //add ghost sprite
-        this.ghost = this.add.sprite(600, 400, 'ghost');
-        this.ghost.setScale(2);
+        this.ghost = this.add.sprite(600, 400, 'ghost'); //where ghost appears on screen at the start of game
+        this.ghost.setScale(2); //enlarge image twice the original size
         this.ghost.setVisible(true); // initially hide the ghost
-
-        this.ghostSpeed = 0.01;
+        this.ghostSpeed = 0.01; //speed of ghost when moving
 
     }
+
+    //method to change visibility of ghost sprite
     toggleGhost() {
         // toggle visibility of the ghost
         this.ghost.setVisible(!this.ghost.visible);
     }
-    // method to toggle flashlight visibility
 
+    // method to toggle flashlight visibility
     toggleLights() {
-        // toggle visibility of flashlight
-        console.log('Lights button clicked');
-        this.flashlight.visible = !this.flashlight.visible;
+        // console.log('Lights button clicked');
+        this.flashlight.visible = !this.flashlight.visible;  //toggles value
         this.toggleGhost(); // toggle visibility of the ghost
         if (this.flashlight.visible) {
             // make black areas visible
@@ -112,20 +112,20 @@ class Play extends Phaser.Scene {
         // reset avatar velocity
         this.avatar.setVelocity(0);
 
-        // avatar movement and animation with arrow keys
-        if (this.cursors.left.isDown) {
+        // avatar movement and animation with arrow keys (left,right,up,down)
+        if (this.cursors.left.isDown) {    //left
             this.avatar.setVelocityX(-100);
             this.avatar.anims.play('walk', true);
-        } else if (this.cursors.right.isDown) {
+        } else if (this.cursors.right.isDown) {    //right
             this.avatar.setVelocityX(100);
             this.avatar.anims.play('walk', true);
-        } else if (this.cursors.up.isDown) {
+        } else if (this.cursors.up.isDown) {   //up
             this.avatar.setVelocityY(-100);
             this.avatar.anims.play('walk', true);
-        } else if (this.cursors.down.isDown) {
+        } else if (this.cursors.down.isDown) {    //down
             this.avatar.setVelocityY(100);
             this.avatar.anims.play('walk', true);
-        } else {
+        } else {                                    // if no button is pressed the animation stops
             this.avatar.anims.stop('walk');
         }
 
@@ -133,7 +133,6 @@ class Play extends Phaser.Scene {
         this.flashlight.x = this.avatar.x;
         this.flashlight.y = this.avatar.y;
 
-        // move ghost towards avatar if lights are off
         // move ghost towards avatar if lights are off
         if (this.flashlight.visible) {
             // calculate direction towards the avatar
