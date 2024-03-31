@@ -24,7 +24,7 @@ class Play extends Phaser.Scene {
         // create animations
         this.anims.create({
             key: 'walk',
-            frames: this.anims.generateFrameNumbers('avatar', { start: 0, end: 1 }),
+            frames: this.anims.generateFrameNumbers('avatar', { start: 1, end: 3 }),
             frameRate: 10,
             repeat: -1
         });
@@ -32,52 +32,52 @@ class Play extends Phaser.Scene {
         // set up keyboard input
         this.cursors = this.input.keyboard.createCursorKeys(); // create cursor keys for keyboard input
 
-        // create render texture for flashlight effect
-        this.rt = this.make.renderTexture({
-            x: 100,
-            y: 100,
-            width: 4000,
-            height: 4000,
-        }, true); // create render texture
+        // // create render texture for flashlight effect
+        // this.rt = this.make.renderTexture({
+        //     x: 100,
+        //     y: 100,
+        //     width: 4000,
+        //     height: 4000,
+        // }, true); // create render texture
 
-        // fill render texture with black
-        this.rt.fill(0x000000, 100); //it is a gradient so it looks like lights are off 
+        // // fill render texture with black
+        // this.rt.fill(0x000000, 100); //it is a gradient so it looks like lights are off 
 
-        // create a radial gradient alpha mask
-        const gradientMask = this.make.graphics();
-        gradientMask.fillStyle(0xffffff, 1);
-        gradientMask.fillCircle(this.avatar.x, this.avatar.y, 250);
+        // // create a radial gradient alpha mask
+        // const gradientMask = this.make.graphics();
+        // gradientMask.fillStyle(0xffffff, 1);
+        // gradientMask.fillCircle(this.avatar.x, this.avatar.y, 250);
 
-        // invert alpha to create the spotlight effect
-        gradientMask.generateTexture('gradientMask', 800, 600);
+        // // invert alpha to create the spotlight effect
+        // gradientMask.generateTexture('gradientMask', 800, 600);
 
-        // apply the gradient as an alpha mask to the render texture
-        this.rt.mask = new Phaser.Display.Masks.BitmapMask(this, gradientMask.createGeometryMask());
+        // // apply the gradient as an alpha mask to the render texture
+        // this.rt.mask = new Phaser.Display.Masks.BitmapMask(this, gradientMask.createGeometryMask());
 
-        // create a flashlight effect
-        this.flashlight = this.make.image({
-            x: this.avatar.x,
-            y: this.avatar.y,
-            key: 'flashlight',
-            add: false
-        });
-        this.flashlight.scale = 2.5;  //size of flashlight around avatar
+        // // create a flashlight effect
+        // this.flashlight = this.make.image({
+        //     x: this.avatar.x,
+        //     y: this.avatar.y,
+        //     key: 'flashlight',
+        //     add: false
+        // });
+        // this.flashlight.scale = 2.5;  //size of flashlight around avatar
 
 
-        // apply the flashlight as a mask to the render texture
-        this.rt.mask = new Phaser.Display.Masks.BitmapMask(this, this.flashlight);
-        this.rt.mask.invertAlpha = true;
+        // // apply the flashlight as a mask to the render texture
+        // this.rt.mask = new Phaser.Display.Masks.BitmapMask(this, this.flashlight);
+        // this.rt.mask.invertAlpha = true;
 
-        // create a button for lights
-        const lightsButton = this.add.text(this.sys.game.config.width - 100, this.sys.game.config.height - 50, 'Lights', { fontSize: '24px', fill: '#ffffff' });
-        lightsButton.setOrigin(1, 1);
-        lightsButton.setInteractive();
-        lightsButton.on('pointerdown', this.toggleLights, this);
+        // // create a button for lights
+        // const lightsButton = this.add.text(this.sys.game.config.width - 100, this.sys.game.config.height - 50, 'Lights', { fontSize: '24px', fill: '#ffffff' });
+        // lightsButton.setOrigin(1, 1);
+        // lightsButton.setInteractive();
+        // lightsButton.on('pointerdown', this.toggleLights, this);
 
-        // create a pink box around the button
-        const buttonBox = this.add.graphics();
-        buttonBox.lineStyle(2, 0xff69b4);
-        buttonBox.strokeRect(lightsButton.x - lightsButton.width - 10, lightsButton.y - lightsButton.height - 10, lightsButton.width + 20, lightsButton.height + 20);
+        // // create a pink box around the button
+        // const buttonBox = this.add.graphics();
+        // buttonBox.lineStyle(2, 0xff69b4);
+        // buttonBox.strokeRect(lightsButton.x - lightsButton.width - 10, lightsButton.y - lightsButton.height - 10, lightsButton.width + 20, lightsButton.height + 20);
 
         //add ghost sprite
         this.ghost = this.add.sprite(600, 400, 'ghost'); //where ghost appears on screen at the start of game
@@ -88,24 +88,24 @@ class Play extends Phaser.Scene {
     }
 
     //method to change visibility of ghost sprite
-    toggleGhost() {
-        // toggle visibility of the ghost
-        this.ghost.setVisible(!this.ghost.visible);
-    }
+    // toggleGhost() {
+    //     // toggle visibility of the ghost
+    //     this.ghost.setVisible(!this.ghost.visible);
+
 
     // method to toggle flashlight visibility
-    toggleLights() {
-        // console.log('Lights button clicked');
-        this.flashlight.visible = !this.flashlight.visible;  //toggles value
-        this.toggleGhost(); // toggle visibility of the ghost
-        if (this.flashlight.visible) {
-            // make black areas visible
-            this.rt.alpha = 1;
-        } else {
-            // make black areas disappear
-            this.rt.alpha = 0;
-        }
-    }
+    // toggleLights() {
+    //     // console.log('Lights button clicked');
+    //     this.flashlight.visible = !this.flashlight.visible;  //toggles value
+    //     this.toggleGhost(); // toggle visibility of the ghost
+    //     if (this.flashlight.visible) {
+    //         // make black areas visible
+    //         this.rt.alpha = 1;
+    //     } else {
+    //         // make black areas disappear
+    //         this.rt.alpha = 0;
+    //     }
+
 
     // method to update game logic
     update() {
@@ -129,23 +129,23 @@ class Play extends Phaser.Scene {
             this.avatar.anims.stop('walk');
         }
 
-        // update flashlight position to follow the avatar
-        this.flashlight.x = this.avatar.x;
-        this.flashlight.y = this.avatar.y;
+        // // update flashlight position to follow the avatar
+        // this.flashlight.x = this.avatar.x;
+        // this.flashlight.y = this.avatar.y;
 
-        // move ghost towards avatar if lights are off
-        if (this.flashlight.visible) {
-            // calculate direction towards the avatar
-            const dx = this.avatar.x - this.ghost.x;
-            const dy = this.avatar.y - this.ghost.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
+        // // move ghost towards avatar if lights are off
+        // if (this.flashlight.visible) {
+        //     // calculate direction towards the avatar
+        //     const dx = this.avatar.x - this.ghost.x;
+        //     const dy = this.avatar.y - this.ghost.y;
+        //     const distance = Math.sqrt(dx * dx + dy * dy);
 
-            // calculate the fraction of the distance to move
-            const fraction = 2 / distance; // adjust this value to control the speed of the ghost
+        //     // calculate the fraction of the distance to move
+        //     const fraction = 2 / distance; // adjust this value to control the speed of the ghost
 
-            // move the ghost towards the avatar by a fraction of the distance
-            this.ghost.x += dx * fraction;
-            this.ghost.y += dy * fraction;
-        }
+        //     // move the ghost towards the avatar by a fraction of the distance
+        //     this.ghost.x += dx * fraction;
+        //     this.ghost.y += dy * fraction;
+        // }
     }
 }

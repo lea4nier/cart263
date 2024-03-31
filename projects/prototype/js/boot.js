@@ -25,4 +25,3 @@ class Boot extends Phaser.Scene {
     update() {
 
     }
-}
