@@ -27,7 +27,7 @@ class ActionMenu {
         // Execute selected action
         switch (action) {
             case 'Open':
-                this.scene.scene.start('note');
+                this.scene.scene.start('Drawer');
         }
     }
 }

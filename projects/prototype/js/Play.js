@@ -57,8 +57,8 @@ class Play extends Phaser.Scene {
             bunny.setScale(2); // Scale the bunny if needed
         }
 
-        this.time.delayedCall(1, () => {
-            this.dresser = this.add.sprite(30, 30, 'dresser').setOrigin(0).setScale(5); // Add dresser image
+        this.time.delayedCall(10000, () => {
+            this.secret = this.add.sprite(30, 30, 'secret').setOrigin(0).setScale(2); // Add dresser image
             // Define actions
             const actions = ['Open'];
 

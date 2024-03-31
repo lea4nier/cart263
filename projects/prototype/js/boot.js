@@ -19,10 +19,19 @@ class Boot extends Phaser.Scene {
         this.load.image('dresser', 'assets/images/dresser.png'); //dresser image
 
         this.load.spritesheet('open', 'assets/images/open.png', {  //dresser opening sprite
-            frameWidth: 80,
-            frameHeight: 80,
+            frameWidth: 16,
+            frameHeight: 16,
             endFrame: 1 //only 2 frames 
         });
+
+        this.load.image('secret', 'assets/images/secret.png');  //room image
+        this.load.spritesheet('letter', 'assets/images/letter.png', {  //avatar sprite
+            frameWidth: 32,
+            frameHeight: 32,
+            endFrame: 7 //only 4 frames 
+        });
+
+        this.load.image('note', 'assets/images/note.png'); //dresser image
     }
 
     create() {
