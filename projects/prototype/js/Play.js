@@ -17,6 +17,18 @@ class Play extends Phaser.Scene {
         this.instructionText = this.add.text(this.sys.game.config.width / 2, 10, 'Use arrow keys to move', { fontSize: '18px', fill: '#ffffff' });
         this.instructionText.setOrigin(0.5, 0);
 
+        const text = "Hello, this is typewriter text!";
+        const typewriter = new Typewriter(this, 100, 100, text, {
+            fontSize: '32px',
+            fill: '#00ff00',
+            typingSpeed: 100,
+            onComplete: () => {
+                console.log("Typewriter effect complete!");
+            }
+        });
+        typewriter.startTypewriter();
+
+
         // create avatar sprite
         this.avatar = this.physics.add.sprite(this.cameras.main.centerX, this.cameras.main.centerY, 'avatar'); // create avatar sprite with physics
         this.avatar.setDisplaySize(100, 100); // set the display size of the avatar sprite
