@@ -6,6 +6,7 @@ class Boot extends Phaser.Scene {
 
     //preload images and sprites 
     preload() {
+        this.load.image('book', 'assets/images/book.png');  //room image
         this.load.image('background', 'assets/images/attic.png');  //room image
         this.load.image('bunny', 'assets/images/bunny.png'); //bunny sprite
         this.load.spritesheet('avatar', 'assets/images/avatar.png', {  //avatar sprite
@@ -14,7 +15,7 @@ class Boot extends Phaser.Scene {
             endFrame: 3 //only 4 frames 
         });
         this.load.on('complete', () => {
-            this.scene.start('play');
+            this.scene.start('Intro');
         });
         this.load.image('dresser', 'assets/images/dresser.png'); //dresser image
 

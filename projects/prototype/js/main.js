@@ -13,7 +13,7 @@ let config = {
     physics: {
         default: 'arcade', // set the default physics system to Arcade Physics.
     },
-    scene: [Boot, Play, Drawer], // specify the scenes to be used in the game (Boot and Play)
+    scene: [Boot, Intro, Play, Drawer], // specify the scenes to be used in the game (Boot and Play)
 
     gravity: { y: 200 } //set the gravity of the game world along the y-axis to 200 units.
 };
