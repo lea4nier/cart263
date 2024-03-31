@@ -19,7 +19,7 @@ class Play extends Phaser.Scene {
 
         // create avatar sprite
         this.avatar = this.physics.add.sprite(this.cameras.main.centerX, this.cameras.main.centerY, 'avatar'); // create avatar sprite with physics
-        this.avatar.setDisplaySize(50, 50); // set the display size of the avatar sprite
+        this.avatar.setDisplaySize(100, 100); // set the display size of the avatar sprite
 
         // create animations
         this.anims.create({
