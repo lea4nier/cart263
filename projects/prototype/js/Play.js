@@ -1,6 +1,5 @@
 //Play scene 
 // This is the class for the game state of my prototype
-//flashlight effect was created inspired by this tutorial by Tommy Leung: https://blog.ourcade.co/posts/2020/phaser3-fog-of-war-field-of-view-roguelike/ 
 class Play extends Phaser.Scene {
     constructor() {
         super({ key: 'play' }); // call the superclass constructor
@@ -55,6 +54,10 @@ class Play extends Phaser.Scene {
             let bunny = this.bunnies.create(x, y, 'bunny'); // Create and add a bunny sprite to the group
             bunny.setScale(2); // Scale the bunny if needed
         }
+
+        this.time.delayedCall(10000, () => {
+            this.dresser = this.add.sprite(30, 30, 'dresser').setOrigin(0).setScale(5); // Add dresser image
+        });
     }
 
 
@@ -88,9 +91,6 @@ class Play extends Phaser.Scene {
     handleBunnyCollision(avatar, bunny) {
         // Make the bunny sprite invisible
         bunny.setVisible(false);
-        // Alternatively, you can destroy the bunny sprite
-        // bunny.destroy();
-
         this.bunnies.getChildren().forEach(bunny => {
             // Calculate distance between avatar and bunny
             const dx = this.avatar.x - bunny.x;
