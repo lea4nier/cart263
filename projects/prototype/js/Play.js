@@ -40,6 +40,8 @@ class Play extends Phaser.Scene {
             repeat: -1
         });
 
+
+
         // set up keyboard input
         this.cursors = this.input.keyboard.createCursorKeys(); // create cursor keys for keyboard input
 
@@ -55,8 +57,13 @@ class Play extends Phaser.Scene {
             bunny.setScale(2); // Scale the bunny if needed
         }
 
-        this.time.delayedCall(10000, () => {
+        this.time.delayedCall(1, () => {
             this.dresser = this.add.sprite(30, 30, 'dresser').setOrigin(0).setScale(5); // Add dresser image
+            // Define actions
+            const actions = ['Open'];
+
+            // Create an instance of ActionMenu
+            this.actionMenu = new ActionMenu(this, this.sys.game.config.width / 2, 10, actions);
         });
     }
 
