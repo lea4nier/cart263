@@ -7,7 +7,7 @@ class Boot extends Phaser.Scene {
     //preload images and sprites 
     preload() {
         this.load.image('background', 'assets/images/attic.png');  //room image
-        this.load.image('ghost', 'assets/images/bunny.png'); //ghost sprite
+        this.load.image('bunny', 'assets/images/bunny.png'); //ghost sprite
         this.load.spritesheet('avatar', 'assets/images/avatar.png', {  //avatar sprite
             frameWidth: 32,
             frameHeight: 32,
@@ -25,3 +25,4 @@ class Boot extends Phaser.Scene {
     update() {
 
     }
+}
