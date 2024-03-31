@@ -19,6 +19,6 @@ body {
   height: 100vh;
   /* Body is the height of the viewport */
   overflow: hidden;
-  background-color: rgb(234, 161, 247);
+  background-color: rgb(148, 10, 172);
   /* Hide anything that goes off the window size */
 }

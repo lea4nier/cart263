@@ -14,19 +14,19 @@ class Play extends Phaser.Scene {
         this.background.setScale(800 / this.background.width, 600 / this.background.height); // scale the background 
 
         // add instruction text at the top of the screen
-        this.instructionText = this.add.text(this.sys.game.config.width / 2, 10, 'Use arrow keys to move', { fontSize: '18px', fill: '#ffffff' });
+        this.instructionText = this.add.text(this.sys.game.config.width / 2, 575, 'Use arrow keys to move', { fontSize: '18px', fill: '#ffffff' });
         this.instructionText.setOrigin(0.5, 0);
 
-        const text = "Hello, this is typewriter text!";
-        const typewriter = new Typewriter(this, 100, 100, text, {
-            fontSize: '32px',
-            fill: '#00ff00',
-            typingSpeed: 100,
-            onComplete: () => {
-                console.log("Typewriter effect complete!");
-            }
-        });
-        typewriter.startTypewriter();
+        // const text = "Hello, this is typewriter text!";
+        // const typewriter = new Typewriter(this, 100, 100, text, {
+        //     fontSize: '32px',
+        //     fill: '#00ff00',
+        //     typingSpeed: 100,
+        //     onComplete: () => {
+        //         console.log("Typewriter effect complete!");
+        //     }
+        // });
+        // typewriter.startTypewriter();
 
 
         // create avatar sprite
@@ -80,6 +80,17 @@ class Play extends Phaser.Scene {
             this.avatar.anims.stop('walk');
         }
 
+        // Check for collision between avatar and bunnies
+        this.physics.overlap(this.avatar, this.bunnies, this.handleBunnyCollision, null, this);
+    }
+
+    // Method to handle bunny collision
+    handleBunnyCollision(avatar, bunny) {
+        // Make the bunny sprite invisible
+        bunny.setVisible(false);
+        // Alternatively, you can destroy the bunny sprite
+        // bunny.destroy();
+
         this.bunnies.getChildren().forEach(bunny => {
             // Calculate distance between avatar and bunny
             const dx = this.avatar.x - bunny.x;
@@ -87,7 +98,7 @@ class Play extends Phaser.Scene {
             const distance = Math.sqrt(dx * dx + dy * dy);
 
             // If avatar is close enough, make bunny move away
-            const minDistance = 100; // Adjust this value to change the sensitivity
+            const minDistance = 200; // Adjust this value to change the sensitivity
             if (distance < minDistance) {
                 // Calculate direction from bunny to avatar
                 const angle = Math.atan2(dy, dx);
