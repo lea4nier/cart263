@@ -18,4 +18,9 @@ let config = {
     gravity: { y: 200 } //set the gravity of the game world along the y-axis to 200 units.
 };
 
-let game = new Phase
+let game = new Phaser.Game(config); // create a new game
+
+
+
+
+
