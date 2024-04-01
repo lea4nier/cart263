@@ -1,5 +1,5 @@
 //Play scene 
-// This is the class for the game state of my prototype
+// This is the class for the chores scene of my game
 class Play extends Phaser.Scene {
     constructor() {
         super({ key: 'play' }); // call the superclass constructor
@@ -21,38 +21,39 @@ class Play extends Phaser.Scene {
         this.avatar = this.physics.add.sprite(this.cameras.main.centerX, this.cameras.main.centerY, 'avatar'); // create avatar sprite with physics
         this.avatar.setDisplaySize(100, 100); // set the display size of the avatar sprite
 
-        // create animations
+        // create animation for avatar walking...how can I get the sprite to face other direction when going left? do I have to make a new spritesheet?
         this.anims.create({
             key: 'walk',
-            frames: this.anims.generateFrameNumbers('avatar', { start: 1, end: 3 }),
+            frames: this.anims.generateFrameNumbers('avatar', { start: 1, end: 3 }), //only 4 frames
             frameRate: 10,
             repeat: -1
         });
 
-
-
         // set up keyboard input
         this.cursors = this.input.keyboard.createCursorKeys(); // create cursor keys for keyboard input
 
-        // Add bunnies
+        // add bunnies
         this.bunnies = this.physics.add.group(); // Create a new group for bunnies
 
-        // Add 30 bunny sprites to the group
-        const numberOfBunnies = 30; // Number of bunnies to create
+        // add 30 bunny sprites to the group
+        const numberOfBunnies = 30; // number of bunnies to create
         for (let i = 0; i < numberOfBunnies; i++) {
-            let x = Phaser.Math.Between(0, this.sys.game.config.width); // Random x position within game width
-            let y = Phaser.Math.Between(0, this.sys.game.config.height); // Random y position within game height
-            let bunny = this.bunnies.create(x, y, 'bunny'); // Create and add a bunny sprite to the group
-            bunny.setScale(2); // Scale the bunny if needed
+            let x = Phaser.Math.Between(0, this.sys.game.config.width); // random x position within game width
+            let y = Phaser.Math.Between(0, this.sys.game.config.height); // random y position within game height
+            let bunny = this.bunnies.create(x, y, 'bunny'); // create and add a bunny sprite to the group
+            bunny.setScale(2); // scale the sprites
         }
 
-        this.time.delayedCall(10000, () => {
-            this.secret = this.add.sprite(30, 30, 'secret').setOrigin(0).setScale(2); // Add dresser image
-            // Define actions
-            const actions = ['Open'];
 
-            // Create an instance of ActionMenu
-            this.actionMenu = new ActionMenu(this, this.sys.game.config.width / 2, 10, actions);
+        //timer of 10 seconds 
+        this.time.delayedCall(10000, () => {
+
+            this.secret = this.add.sprite(300, 300, 'secret').setOrigin(0).setScale(2); // envelope image appears after 10 seconds
+
+            // the action menu appears
+            const actions = ['Open'];
+            // create an instance of ActionMenu
+            this.actionMenu = new ActionMenu(this, this.sys.game.config.width / 2, 10, actions); //
         });
     }
 
@@ -79,28 +80,29 @@ class Play extends Phaser.Scene {
             this.avatar.anims.stop('walk');
         }
 
-        // Check for collision between avatar and bunnies
+        // check for collision between avatar and bunnies
         this.physics.overlap(this.avatar, this.bunnies, this.handleBunnyCollision, null, this);
     }
 
-    // Method to handle bunny collision
-    handleBunnyCollision(avatar, bunny) {
-        // Make the bunny sprite invisible
+    // method to handle bunny collision
+    handleBunnyCollision(avatar, bunny) {  //parameters for method
+        // make the bunny sprite invisible if there is collision
         bunny.setVisible(false);
         this.bunnies.getChildren().forEach(bunny => {
-            // Calculate distance between avatar and bunny
+            // calculate distance between avatar and bunny
             const dx = this.avatar.x - bunny.x;
             const dy = this.avatar.y - bunny.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
-            // If avatar is close enough, make bunny move away
-            const minDistance = 200; // Adjust this value to change the sensitivity
-            if (distance < minDistance) {
-                // Calculate direction from bunny to avatar
+            // if avatar is close enough, make bunny move away
+            const minDistance = 200; //minimum distance from bunny
+
+            if (distance < minDistance) { //if the distance is less than 200 the bunny runs away 
+                // calculate direction from bunny to avatar
                 const angle = Math.atan2(dy, dx);
 
-                // Move bunny away from the avatar (add π to the angle to reverse the direction)
-                const speed = 50; // Adjust this value to change the speed of the bunny
+                // move bunny away from the avatar (add π to the angle to reverse the direction)
+                const speed = 50; // adjust this value to change the speed of the bunny
                 bunny.setVelocityX(Math.cos(angle + Math.PI) * speed);
                 bunny.setVelocityY(Math.sin(angle + Math.PI) * speed);
             }

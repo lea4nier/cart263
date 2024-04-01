@@ -46,10 +46,4 @@ class Typewriter {
         });
     }
 
-    destroy() {
-        if (this.typingTimer) {
-            this.typingTimer.destroy();
-        }
-        this.text.destroy();
-    }
-}
+   

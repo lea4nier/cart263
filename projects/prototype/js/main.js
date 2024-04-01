@@ -1,8 +1,8 @@
 /***********************
-Don't get possessed!
+Escape The Story!
 Léa Fournier
 
-Turn the lights on and off to avoid the ghost. 
+This is a prototype of the first scene of my Final Project.  
 ***********************/
 "use strict";
 
@@ -13,14 +13,9 @@ let config = {
     physics: {
         default: 'arcade', // set the default physics system to Arcade Physics.
     },
-    scene: [Boot, Intro, Play, Drawer], // specify the scenes to be used in the game (Boot and Play)
+    scene: [Boot, Intro, Play, Drawer], // specify the scenes to be used in the game (Boot, Intro, Play, and Drawer)
 
     gravity: { y: 200 } //set the gravity of the game world along the y-axis to 200 units.
 };
 
-let game = new Phaser.Game(config); // create a new game
-
-
-
-
-
+let game = new Phase
