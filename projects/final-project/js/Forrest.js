@@ -18,13 +18,13 @@ class Forrest extends Phaser.Scene {
 
 
         // create avatar sprite
-        this.avatar = this.physics.add.sprite(this.cameras.main.centerX, this.cameras.main.centerY, 'avatar'); // create avatar sprite with physics
-        this.avatar.setDisplaySize(100, 100); // set the display size of the avatar sprite
+        this.girl = this.physics.add.sprite(50, 400 - 50, 'girl'); // create avatar sprite with physics
+        this.girl.setDisplaySize(100, 100); // set the display size of the avatar sprite
 
         // create animation for avatar walking...how can I get the sprite to face other direction when going left? do I have to make a new spritesheet?
         this.anims.create({
             key: 'walk',
-            frames: this.anims.generateFrameNumbers('avatar', { start: 1, end: 3 }), //only 4 frames
+            frames: this.anims.generateFrameNumbers('girl', { start: 1, end: 3 }), //only 4 frames
             frameRate: 10,
             repeat: -1
         });
@@ -32,83 +32,53 @@ class Forrest extends Phaser.Scene {
         // set up keyboard input
         this.cursors = this.input.keyboard.createCursorKeys(); // create cursor keys for keyboard input
 
-        // add bunnies
-        this.bunnies = this.physics.add.group(); // Create a new group for bunnies
+        this.platforms = this.physics.add.staticGroup();
 
-        // add 30 bunny sprites to the group
-        const numberOfBunnies = 30; // number of bunnies to create
-        for (let i = 0; i < numberOfBunnies; i++) {
-            let x = Phaser.Math.Between(0, this.sys.game.config.width); // random x position within game width
-            let y = Phaser.Math.Between(0, this.sys.game.config.height); // random y position within game height
-            let bunny = this.bunnies.create(x, y, 'bunny'); // create and add a bunny sprite to the group
-            bunny.setScale(2); // scale the sprites
-        }
+        this.platforms = this.physics.add.staticGroup();
+        this.platforms.create(400, 550, 'platform').setScale(2).refreshBody(); // Lower main platform
+        this.platforms.create(150, 400, 'platform').setScale(2).refreshBody();  // Platform on the mid left at mid-height
+        this.platforms.create(50, 400, 'platform').setScale(2).refreshBody(); // platform far left mid height 
+        this.platforms.create(650, 400, 'platform').setScale(2).refreshBody();  // Platform on the right at mid-height
+        this.platforms.create(400, 250, 'platform').setScale(2).refreshBody();  // Higher platform in the middle
+
+        // Creating more platforms to make it easier to jump and navigate
+        this.platforms.create(250, 300, 'platform').setScale(2).refreshBody();  // Additional platform to break up large gaps
+        this.platforms.create(550, 300, 'platform');  // Additional platform to break up large gaps
 
 
-        //timer of 10 seconds 
-        this.time.delayedCall(10000, () => {
+        // Collider between the avatar and platforms
+        this.physics.add.collider(this.girl, this.platforms);
 
-            this.secret = this.add.sprite(300, 300, 'secret').setOrigin(0).setScale(2); // envelope image appears after 10 seconds
-
-            // the action menu appears
-            const actions = ['Open'];
-            // create an instance of ActionMenu
-            this.actionMenu = new ActionMenu(this, this.sys.game.config.width / 2, 10, actions); //
-        });
     }
 
 
     // method to update game logic
     update() {
         // reset avatar velocity
-        this.avatar.setVelocity(0);
+        this.girl.setVelocity(0);
 
         // avatar movement and animation with arrow keys (left,right,up,down)
         if (this.cursors.left.isDown) {    //left
-            this.avatar.setVelocityX(-100);
-            this.avatar.anims.play('walk', true);
-            this.avatar.setFlipX(true); // Flip sprite horizontally
+            this.girl.setVelocityX(-100);
+            this.girl.anims.play('walk', true);
+            this.girl.setFlipX(true); // Flip sprite horizontally
         } else if (this.cursors.right.isDown) {    //right
-            this.avatar.setVelocityX(100);
-            this.avatar.anims.play('walk', true);
-            this.avatar.setFlipX(false); // Ensure sprite faces right (normal orientation)
+            this.girl.setVelocityX(100);
+            this.girl.anims.play('walk', true);
+            this.girl.setFlipX(false); // Ensure sprite faces right (normal orientation)
         } else if (this.cursors.up.isDown) {   //up
-            this.avatar.setVelocityY(-100);
-            this.avatar.anims.play('walk', true);
+            this.girl.setVelocityY(-100);
+            this.girl.anims.play('walk', true);
         } else if (this.cursors.down.isDown) {    //down
-            this.avatar.setVelocityY(100);
-            this.avatar.anims.play('walk', true);
+            this.girl.setVelocityY(100);
+            this.girl.anims.play('walk', true);
         } else {                                    // if no button is pressed the animation stops
-            this.avatar.anims.stop();
-            this.avatar.setVelocity(0);
+            this.girl.anims.stop();
+            this.girl.setVelocity(0);
         }
 
-        // check for collision between avatar and bunnies
-        this.physics.overlap(this.avatar, this.bunnies, this.handleBunnyCollision, null, this);
+
     }
 
-    // method to handle bunny collision
-    handleBunnyCollision(avatar, bunny) {  //parameters for method
-        // make the bunny sprite invisible if there is collision
-        bunny.setVisible(false);
-        this.bunnies.getChildren().forEach(bunny => {
-            // calculate distance between avatar and bunny
-            const dx = this.avatar.x - bunny.x;
-            const dy = this.avatar.y - bunny.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
 
-            // if avatar is close enough, make bunny move away
-            const minDistance = 200; //minimum distance from bunny
-
-            if (distance < minDistance) { //if the distance is less than 200 the bunny runs away 
-                // calculate direction from bunny to avatar
-                const angle = Math.atan2(dy, dx);
-
-                // move bunny away from the avatar (add π to the angle to reverse the direction)
-                const speed = 50; // adjust this value to change the speed of the bunny
-                bunny.setVelocityX(Math.cos(angle + Math.PI) * speed);
-                bunny.setVelocityY(Math.sin(angle + Math.PI) * speed);
-            }
-        });
-    }
 }

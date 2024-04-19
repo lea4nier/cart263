@@ -4,7 +4,7 @@ class Boot extends Phaser.Scene {
         super({ key: 'boot' });
     }
 
-    //preload images and sprites 
+    //preload images and sprites assets 
     preload() {
         //change this to change scene 
         this.load.on('complete', () => {
@@ -37,6 +37,8 @@ class Boot extends Phaser.Scene {
             frameHeight: 32, //height
             endFrame: 3 //only 4 frames 
         });
+
+        this.load.image('platform', 'assets/images/platform.png'); //platform image 
     }
 
     create() {
