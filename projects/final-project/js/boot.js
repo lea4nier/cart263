@@ -29,6 +29,14 @@ class Boot extends Phaser.Scene {
             endFrame: 7 //only 4 frames 
         });
         this.load.image('note', 'assets/images/note.png'); //secret note image that says "GET OUT"
+
+        //scene 4 - Forrest - Assets
+        this.load.image('trees', 'assets/images/trees.png');  //forrest background image
+        this.load.spritesheet('girl', 'assets/images/girl.png', {  //avatar sprite of protagonist without broom called "girl"
+            frameWidth: 32, //width
+            frameHeight: 32, //height
+            endFrame: 3 //only 4 frames 
+        });
     }
 
     create() {

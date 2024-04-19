@@ -8,7 +8,7 @@ class Forrest extends Phaser.Scene {
     // method to create game objects and set up the scene
     create() {
         // create background
-        this.background = this.add.sprite(0, 0, 'background'); // display background image
+        this.background = this.add.sprite(0, 0, 'trees'); // display background image
         this.background.setOrigin(0, 0); // set the origin of the background 
         this.background.setScale(800 / this.background.width, 600 / this.background.height); // scale the background 
 
