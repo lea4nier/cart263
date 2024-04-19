@@ -64,12 +64,15 @@ class Play extends Phaser.Scene {
         this.avatar.setVelocity(0);
 
         // avatar movement and animation with arrow keys (left,right,up,down)
+        // avatar movement and animation with arrow keys (left,right,up,down)
         if (this.cursors.left.isDown) {    //left
             this.avatar.setVelocityX(-100);
             this.avatar.anims.play('walk', true);
+            this.avatar.setFlipX(true); // Flip sprite horizontally
         } else if (this.cursors.right.isDown) {    //right
             this.avatar.setVelocityX(100);
             this.avatar.anims.play('walk', true);
+            this.avatar.setFlipX(false); // Ensure sprite faces right (normal orientation)
         } else if (this.cursors.up.isDown) {   //up
             this.avatar.setVelocityY(-100);
             this.avatar.anims.play('walk', true);
@@ -77,7 +80,8 @@ class Play extends Phaser.Scene {
             this.avatar.setVelocityY(100);
             this.avatar.anims.play('walk', true);
         } else {                                    // if no button is pressed the animation stops
-            this.avatar.anims.stop('walk');
+            this.avatar.anims.stop();
+            this.avatar.setVelocity(0);
         }
 
         // check for collision between avatar and bunnies

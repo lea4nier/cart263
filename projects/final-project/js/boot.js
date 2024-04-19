@@ -6,7 +6,15 @@ class Boot extends Phaser.Scene {
 
     //preload images and sprites 
     preload() {
+        //change this to change scene 
+        this.load.on('complete', () => {
+            this.scene.start('forrest'); //game starts in "Intro" scene
+        });
+
+        //scene 1 - Intro - Assets
         this.load.image('book', 'assets/images/book.png');  //book image
+
+        //scene 2 - Play - Assets
         this.load.image('background', 'assets/images/attic.png');  //attic background image
         this.load.image('bunny', 'assets/images/bunny.png'); //bunny sprite
         this.load.spritesheet('avatar', 'assets/images/avatar.png', {  //avatar sprite of protagonist
@@ -14,25 +22,12 @@ class Boot extends Phaser.Scene {
             frameHeight: 32, //height
             endFrame: 3 //only 4 frames 
         });
-        this.load.on('complete', () => {
-            this.scene.start('forrest'); //game starts in "Intro" scene
-        });
-
-        // this.load.image('dresser', 'assets/images/dresser.png'); //dresser image
-
-        // this.load.spritesheet('open', 'assets/images/open.png', {  //dresser opening sprite
-        //     frameWidth: 16,
-        //     frameHeight: 16,
-        //     endFrame: 1 //only 2 frames 
-        // });
-
         this.load.image('secret', 'assets/images/secret.png');  //letter image
         this.load.spritesheet('letter', 'assets/images/letter.png', {  //avatar sprite
             frameWidth: 32,
             frameHeight: 32,
             endFrame: 7 //only 4 frames 
         });
-
         this.load.image('note', 'assets/images/note.png'); //secret note image that says "GET OUT"
     }
 
