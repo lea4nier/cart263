@@ -15,7 +15,7 @@ class Boot extends Phaser.Scene {
             endFrame: 3 //only 4 frames 
         });
         this.load.on('complete', () => {
-            this.scene.start('play'); //game starts in "Intro" scene
+            this.scene.start('forrest'); //game starts in "Intro" scene
         });
 
         // this.load.image('dresser', 'assets/images/dresser.png'); //dresser image
