@@ -4,11 +4,11 @@ class Boot extends Phaser.Scene {
         super({ key: 'boot' });
     }
 
-    //preload images and sprites assets 
+    //preload images and sprite assets 
     preload() {
         //change this to change scene 
         this.load.on('complete', () => {
-            this.scene.start('glitch'); //game starts in "Intro" scene
+            this.scene.start('maze'); //game starts in "Intro" scene
         });
 
         //scene 1 - Intro - Assets
@@ -35,6 +35,8 @@ class Boot extends Phaser.Scene {
         //scene 4 - Maze - Assets
         this.load.image('mother', 'assets/images/evil.png'); //evil step mother image
         this.load.image('ella', 'assets/images/mazegirl.png'); //girl avatar image, not an animated sprite for this scene
+
+        this.load.image('key', 'assets/images/key.png'); //key image
 
         //scene 5 - Forrest - Assets
         this.load.image('trees', 'assets/images/trees.png');  //forrest background image
