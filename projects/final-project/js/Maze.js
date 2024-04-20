@@ -4,6 +4,9 @@ class Maze extends Phaser.Scene {
     }
 
     create() {
+        // add instruction text at the bottom of the screen
+        this.instructionText = this.add.text(this.sys.game.config.width / 2, 575, 'use arrow keys to move', { fontSize: '18px', fill: '#ffffff' });
+        this.instructionText.setOrigin(0.5, 0);
         // add the evil stepmother to the scene
         this.mother = this.physics.add.sprite(100, 100, 'mother');
         this.mother.setDisplaySize(80, 80); //resize sprite
@@ -22,6 +25,9 @@ class Maze extends Phaser.Scene {
         this.stepsTaken = 0;
         // flag to indicate if the mother should move, she only starts moving after user moves ella 
         this.motherCanMove = false;
+
+        // collider between ella and the key
+        this.physics.add.overlap(this.ella, this.key, this.collectKey, null, this);
     }
 
     update() {
@@ -71,5 +77,12 @@ class Maze extends Phaser.Scene {
             this.motherCanMove = false;
         }
     }
+    //function to switch to next scene once ella collects key
+    collectKey(ella, key) {
+        // remove the key from the scene
+        key.destroy();
 
+        // switch to the "forrest" scene
+        this.scene.start('forrest');
+    }
 }

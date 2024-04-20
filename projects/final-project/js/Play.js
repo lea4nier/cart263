@@ -12,7 +12,7 @@ class Play extends Phaser.Scene {
         this.background.setOrigin(0, 0); // set the origin of the background 
         this.background.setScale(800 / this.background.width, 600 / this.background.height); // scale the background 
 
-        // add instruction text at the top of the screen
+        // add instruction text at the bottom of the screen
         this.instructionText = this.add.text(this.sys.game.config.width / 2, 575, 'Use arrow keys to move', { fontSize: '18px', fill: '#ffffff' });
         this.instructionText.setOrigin(0.5, 0);
 
