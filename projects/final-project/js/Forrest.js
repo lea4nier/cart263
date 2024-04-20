@@ -7,7 +7,8 @@ class Forrest extends Phaser.Scene {
 
     // method to create game objects and set up the scene
     create() {
-
+        // Set gravity
+        this.physics.world.gravity.y = 2000; // Adjust the value as needed
         // create background
         this.background = this.add.sprite(0, 0, 'trees'); // display background image
         this.background.setOrigin(0, 0); // set the origin of the background 
@@ -19,8 +20,8 @@ class Forrest extends Phaser.Scene {
 
 
         // create avatar sprite
-        this.girl = this.physics.add.sprite(50, 400 - 50, 'girl'); // create avatar sprite with physics
-        this.girl.setDisplaySize(100, 100); // set the display size of the avatar sprite
+        this.girl = this.physics.add.sprite(50, 400 - 40, 'girl'); // create avatar sprite with physics
+        this.girl.setDisplaySize(70, 70); // set the display size of the avatar sprite
 
         // create animation for avatar walking...how can I get the sprite to face other direction when going left? do I have to make a new spritesheet?
         this.anims.create({
