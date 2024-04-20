@@ -7,6 +7,7 @@ class Forrest extends Phaser.Scene {
 
     // method to create game objects and set up the scene
     create() {
+
         // create background
         this.background = this.add.sprite(0, 0, 'trees'); // display background image
         this.background.setOrigin(0, 0); // set the origin of the background 
@@ -24,13 +25,14 @@ class Forrest extends Phaser.Scene {
         // create animation for avatar walking...how can I get the sprite to face other direction when going left? do I have to make a new spritesheet?
         this.anims.create({
             key: 'walk',
-            frames: this.anims.generateFrameNumbers('girl', { start: 1, end: 3 }), //only 4 frames
+            frames: this.anims.generateFrameNumbers('girl', { start: 0, end: 3 }), //only 4 frames
             frameRate: 10,
             repeat: -1
         });
 
         // set up keyboard input
         this.cursors = this.input.keyboard.createCursorKeys(); // create cursor keys for keyboard input
+        this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //add spacebar input for jumping 
 
         this.platforms = this.physics.add.staticGroup();
 
@@ -66,15 +68,17 @@ class Forrest extends Phaser.Scene {
             this.girl.setVelocityX(100);
             this.girl.anims.play('walk', true);
             this.girl.setFlipX(false); // Ensure sprite faces right (normal orientation)
-        } else if (this.cursors.up.isDown) {   //up
-            this.girl.setVelocityY(-100);
-            this.girl.anims.play('walk', true);
-        } else if (this.cursors.down.isDown) {    //down
-            this.girl.setVelocityY(100);
-            this.girl.anims.play('walk', true);
-        } else {                                    // if no button is pressed the animation stops
+        }
+        // Jumping
+
+
+        if (this.spacebar.isDown) {
+            this.girl.setVelocityY(-330); // Adjust velocity for jump height
+        }
+
+        // If no horizontal movement, stop the walking animation
+        if (this.cursors.left.isUp && this.cursors.right.isUp) {
             this.girl.anims.stop();
-            this.girl.setVelocity(0);
         }
 
 
