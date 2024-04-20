@@ -15,7 +15,7 @@ class Forrest extends Phaser.Scene {
         this.background.setScale(800 / this.background.width, 600 / this.background.height); // scale the background 
 
         // add instruction text at the top of the screen
-        this.instructionText = this.add.text(this.sys.game.config.width / 2, 575, 'Use arrow keys to move', { fontSize: '18px', fill: '#ffffff' });
+        this.instructionText = this.add.text(this.sys.game.config.width / 2, 575, 'use arrow keys to move, use spacebar to jump', { fontSize: '18px', fill: '#ffffff' });
         this.instructionText.setOrigin(0.5, 0);
 
 
@@ -51,7 +51,41 @@ class Forrest extends Phaser.Scene {
 
         // Collider between the avatar and platforms
         this.physics.add.collider(this.girl, this.platforms);
+        // create render texture for flashlight effect
+        this.rt = this.make.renderTexture({
+            x: 100,
+            y: 100,
+            width: 4000,
+            height: 4000,
+        }, true); // create render texture
 
+        // fill render texture with black
+        this.rt.fill(0x000000, 100); //it is a gradient so it looks like lights are off 
+
+        // create a radial gradient alpha mask
+        const gradientMask = this.make.graphics();
+        gradientMask.fillStyle(0xffffff, 1);
+        gradientMask.fillCircle(this.girl.x, this.girl.y, 250);
+
+        // invert alpha to create the spotlight effect
+        gradientMask.generateTexture('gradientMask', 800, 600);
+
+        // apply the gradient as an alpha mask to the render texture
+        this.rt.mask = new Phaser.Display.Masks.BitmapMask(this, gradientMask.createGeometryMask());
+
+        // create a flashlight effect
+        this.flashlight = this.make.image({
+            x: this.girl.x,
+            y: this.girl.y,
+            key: 'flashlight',
+            add: false
+        });
+        this.flashlight.scale = 2.5;  //size of flashlight around avatar
+
+
+        // apply the flashlight as a mask to the render texture
+        this.rt.mask = new Phaser.Display.Masks.BitmapMask(this, this.flashlight);
+        this.rt.mask.invertAlpha = true;
     }
 
 
@@ -71,8 +105,6 @@ class Forrest extends Phaser.Scene {
             this.girl.setFlipX(false); // Ensure sprite faces right (normal orientation)
         }
         // Jumping
-
-
         if (this.spacebar.isDown) {
             this.girl.setVelocityY(-330); // Adjust velocity for jump height
         }
@@ -83,6 +115,9 @@ class Forrest extends Phaser.Scene {
         }
 
 
+        // update flashlight position to follow the avatar
+        this.flashlight.x = this.girl.x;
+        this.flashlight.y = this.girl.y;
     }
 
 
