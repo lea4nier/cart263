@@ -31,7 +31,10 @@ class Boot extends Phaser.Scene {
             endFrame: 7 //only 4 frames 
         });
         this.load.image('note', 'assets/images/note.png'); //secret note image that says "GET OUT"
+
         //scene 4 - Maze - Assets
+        this.load.image('mother', 'assets/images/evil.png'); //evil step mother image
+        this.load.image('ella', 'assets/images/mazegirl.png'); //girl avatar image, not an animated sprite for this scene
 
         //scene 5 - Forrest - Assets
         this.load.image('trees', 'assets/images/trees.png');  //forrest background image
