@@ -51,6 +51,12 @@ class Forrest extends Phaser.Scene {
 
         // Collider between the avatar and platforms
         this.physics.add.collider(this.girl, this.platforms);
+
+        //add book image on lowest platform 
+        this.book = this.add.image(400, 530, 'book');
+        this.book.setScale(0.3); //resize 
+
+
         // create render texture for flashlight effect
         this.rt = this.make.renderTexture({
             x: 100,
@@ -86,6 +92,7 @@ class Forrest extends Phaser.Scene {
         // apply the flashlight as a mask to the render texture
         this.rt.mask = new Phaser.Display.Masks.BitmapMask(this, this.flashlight);
         this.rt.mask.invertAlpha = true;
+
     }
 
 

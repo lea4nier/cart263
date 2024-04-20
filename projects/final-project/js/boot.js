@@ -8,7 +8,7 @@ class Boot extends Phaser.Scene {
     preload() {
         //change this to change scene 
         this.load.on('complete', () => {
-            this.scene.start('forrest'); //game starts in "Intro" scene
+            this.scene.start('glitch'); //game starts in "Intro" scene
         });
 
         //scene 1 - Intro - Assets
@@ -37,8 +37,14 @@ class Boot extends Phaser.Scene {
             frameHeight: 22, //height
             endFrame: 3 //only 4 frames 
         });
-
         this.load.image('platform', 'assets/images/platform.png'); //platform image 
+
+        //scene 5 - Glitch - Assets
+        this.load.spritesheet('color', 'assets/images/color.png', {  //animation of background glitching and changing color
+            frameWidth: 960, //width
+            frameHeight: 720, //height
+            endFrame: 10 //only 11 frames 
+        });
     }
 
     create() {
