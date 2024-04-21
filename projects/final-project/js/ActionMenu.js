@@ -20,7 +20,7 @@ class ActionMenu {
     createButtons() {
         this.actions.forEach((action, index) => {
             //create a text button for each action
-            const button = this.scene.add.text(this.x, this.y + index * 50, action, { fill: '#ffffff' });
+            const button = this.scene.add.text(this.x + index * 100, this.y, action, { fill: '#ffffff' });
             //create hit area for button
             button.setInteractive();
             //button is pressed when clicked
@@ -38,6 +38,14 @@ class ActionMenu {
         switch (action) {
             case 'Open':
                 this.scene.scene.start('Drawer');
+                break;
+            case 'Fight':
+                this.scene.scene.start('battle');
+                break;
+            case 'Laugh':
+                this.scene.scene.start('Fight');
+                break;
+            // Add more cases for additional actions
         }
     }
 }

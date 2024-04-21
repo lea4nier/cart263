@@ -13,18 +13,20 @@ class Fight extends Phaser.Scene {
         this.ella = this.physics.add.sprite(300, 450, 'ella');
         this.ella.setDisplaySize(80, 80); //resize sprite
 
-        // create number countdown sprite
-        this.fire = this.physics.add.sprite(500, 400, 'fire'); // create avatar sprite with physics
-        this.fire.setDisplaySize(315, 192); // set the display size of the avatar sprite
+        // create dragon sprite
+        this.fire = this.physics.add.sprite(500, 400, 'fire'); // create dragon sprite with physics
+        this.fire.setDisplaySize(315, 192); // set the display size of the dragon sprite
 
-        // create animation for avatar walking...how can I get the sprite to face other direction when going left? do I have to make a new spritesheet?
+        // create animation for dragon breathing fire sprite
         this.anims.create({
             key: 'fire',
             frames: this.anims.generateFrameNumbers('fire', { start: 0, end: 23 }), //only 4 frames
             frameRate: 10,
             repeat: 0
         });
-        this.fire.anims.play('fire', true); //play countdown animation
+        this.fire.anims.play('fire', true); //play animation
+        //create new instance of action menu
+        this.actionMenu = new ActionMenu(this, 230, 350, ['Fight', 'Laugh']); //2 buttons, fight or laugh
     }
 
     update() {
