@@ -49,11 +49,8 @@ class Forrest extends Phaser.Scene {
         this.platforms.create(550, 300, 'platform');  // Additional platform to break up large gaps
 
 
-        // collider between the avatar and platforms
+        // ollider between the avatar and platforms
         this.physics.add.collider(this.girl, this.platforms);
-
-        // collider between the girl and the book
-        this.physics.add.overlap(this.girl, this.book, this.handleBookOverlap, null, this);
 
         //add book image on lowest platform 
         this.book = this.add.image(400, 530, 'book');
@@ -96,11 +93,17 @@ class Forrest extends Phaser.Scene {
         this.rt.mask = new Phaser.Display.Masks.BitmapMask(this, this.flashlight);
         this.rt.mask.invertAlpha = true;
 
+        // pointer event created for the book image
+        this.book.setInteractive();
+        this.book.on('pointerdown', () => { //if the user's cursor is pressed down
+            // change scene to "glitch"
+            this.scene.start('glitch');
+        });
     }
-    //method to check if girl sprite has overlaped with book
-    handleBookOverlap(girl, book) {
-        this.scene.start('glitch'); // switch to "glitch" scene when the girl overlaps with the book
-    }
+
+
+
+
     // method to update game logic
     update() {
         // reset avatar velocity
@@ -131,6 +134,5 @@ class Forrest extends Phaser.Scene {
         this.flashlight.x = this.girl.x;
         this.flashlight.y = this.girl.y;
     }
-
-
 }
+
