@@ -18,6 +18,12 @@ class Glitch extends Phaser.Scene {
             repeat: 0 //ends on final frame
         });
         this.glitchAnimation.anims.play('glitching', true);
+
+        // Event handler for animation complete
+        this.glitchAnimation.on('animationcomplete', () => {
+            // Transition to the 'battle' scene
+            this.scene.start('battle');
+        });
     }
 
 
