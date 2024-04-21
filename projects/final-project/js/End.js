@@ -19,21 +19,21 @@ class End extends Phaser.Scene {
             fill: '#00ff00', //green
             typingSpeed: 100, //speed 
             onComplete: () => {
-                this.createButton(); // call method to create button when typewriter is complete
+                this.actionMenu = new ActionMenu(this, this.sys.game.config.width / 2, 500, ['Click to Play Again']);
             }
         });
         typewriter.startTypewriter();  //start typewriter
     }
 
-    //method to create button
-    createButton() {
-        const button = this.add.text(this.sys.game.config.width / 2, 500, 'click to play again', { fill: '#ffffff', fontSize: '24px' });
-        button.setOrigin(0.5);
-        button.setInteractive();
-        button.on('pointerdown', () => {
-            this.scene.start('play'); // Switch scene to "Play" when button is clicked
-        });
-    }
+    // //method to create button
+    // createButton() {
+    //     const button = this.add.text(this.sys.game.config.width / 2, 500, 'click to play again', { fill: '#ffffff', fontSize: '24px' });
+    //     button.setOrigin(0.5);
+    //     button.setInteractive();
+    //     button.on('pointerdown', () => {
+    //         this.scene.start('play'); // Switch scene to "Play" when button is clicked
+    //     });
+    // }
 
     //not currently being used 
     update() {

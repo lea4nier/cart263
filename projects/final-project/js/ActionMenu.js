@@ -45,6 +45,9 @@ class ActionMenu {
             case 'Laugh':
                 this.scene.scene.start('end');
                 break;
+            case 'Click to Play Again':
+                this.scene.scene.start('play');
+                break;
             // Add more cases for additional actions
         }
     }
