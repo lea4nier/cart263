@@ -23,7 +23,7 @@ class Forrest extends Phaser.Scene {
         this.girl = this.physics.add.sprite(50, 400 - 40, 'girl'); // create avatar sprite with physics
         this.girl.setDisplaySize(70, 70); // set the display size of the avatar sprite
 
-        // create animation for avatar walking...how can I get the sprite to face other direction when going left? do I have to make a new spritesheet?
+        // create animation for girl walking
         this.anims.create({
             key: 'walk',
             frames: this.anims.generateFrameNumbers('girl', { start: 0, end: 3 }), //only 4 frames
@@ -49,8 +49,11 @@ class Forrest extends Phaser.Scene {
         this.platforms.create(550, 300, 'platform');  // Additional platform to break up large gaps
 
 
-        // Collider between the avatar and platforms
+        // collider between the avatar and platforms
         this.physics.add.collider(this.girl, this.platforms);
+
+        // collider between the girl and the book
+        this.physics.add.overlap(this.girl, this.book, this.handleBookOverlap, null, this);
 
         //add book image on lowest platform 
         this.book = this.add.image(400, 530, 'book');
@@ -94,8 +97,10 @@ class Forrest extends Phaser.Scene {
         this.rt.mask.invertAlpha = true;
 
     }
-
-
+    //method to check if girl sprite has overlaped with book
+    handleBookOverlap(girl, book) {
+        this.scene.start('glitch'); // switch to "glitch" scene when the girl overlaps with the book
+    }
     // method to update game logic
     update() {
         // reset avatar velocity
