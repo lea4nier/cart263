@@ -2,8 +2,7 @@
 Escape The Story!
 Léa Fournier
 
-In this game the main character becomes self aware 
-and goes on a journey to escape her fairytale story.    
+In this game the main character becomes self aware and goes on a journey to escape her fairytale story.    
 ***********************/
 "use strict";
 

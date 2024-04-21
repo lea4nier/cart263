@@ -8,7 +8,7 @@ class Boot extends Phaser.Scene {
     preload() {
         //change this to change scene 
         this.load.on('complete', () => {
-            this.scene.start('glitch'); //game starts in "Intro" scene
+            this.scene.start('battle'); //game starts in "Intro" scene
         });
 
         //scene 1 - Intro - Assets
@@ -55,7 +55,7 @@ class Boot extends Phaser.Scene {
         });
 
         //scene 7 - Battle - Assets
-        this.load.image('sky', 'sky.png'); //red forrest background image to match glitch
+        this.load.image('sky', 'assets/images/sky.png'); //red forrest background image to match glitch
         this.load.spritesheet('fire', 'assets/images/fire.png', {  //animation of dragon breathing fire
             frameWidth: 105, //width
             frameHeight: 64, //height
@@ -67,7 +67,7 @@ class Boot extends Phaser.Scene {
             frameHeight: 64, //height
             endFrame: 3 //only 4 frames 
         });
-        this.load.image('dragon', 'dragon.png'); //dragon image
+        this.load.image('dragon', 'assets/images/dragon.png'); //dragon image
 
     }
 
