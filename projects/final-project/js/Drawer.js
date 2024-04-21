@@ -37,6 +37,7 @@ class Drawer extends Phaser.Scene {
             const note = this.add.image(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'note');
             note.setScale(10); //scale to be larger...I drew it too small oops
             typewriter.startTypewriter();  //start typewriter
+            this.actionMenu = new ActionMenu(this, 600, 550, ['Go']);
         });
     }
 

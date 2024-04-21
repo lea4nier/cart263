@@ -37,16 +37,19 @@ class ActionMenu {
         // if the action picked is "open" the the scene called "drawer" starts
         switch (action) {
             case 'Open':
-                this.scene.scene.start('Drawer');
+                this.scene.scene.start('Drawer'); //switches to drawer scene
+                break;
+            case 'Go':
+                this.scene.scene.start('Bunny'); //switches to drawer scene
                 break;
             case 'Fight':
-                this.scene.scene.start('battle');
+                this.scene.scene.start('battle'); //switches back to battle scene before
                 break;
             case 'Laugh':
-                this.scene.scene.start('end');
+                this.scene.scene.start('end');  //switches to end scene 
                 break;
             case 'Click to Play Again':
-                this.scene.scene.start('play');
+                this.scene.scene.start('play'); //switches to play scene 
                 break;
             // Add more cases for additional actions
         }
