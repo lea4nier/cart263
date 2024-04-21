@@ -48,7 +48,7 @@ class Boot extends Phaser.Scene {
         this.load.image('key', 'assets/images/key.png'); //key image
 
         //scene 6 - Forrest - Assets
-        this.load.image('trees', 'assets/images/trees.png');  //forrest background image
+        this.load.image('trees', 'assets/images/trees.PNG');  //forrest background image
         this.load.spritesheet('girl', 'assets/images/girl.png', {  //avatar sprite of protagonist without broom called "girl"
             frameWidth: 16, //width
             frameHeight: 22, //height
