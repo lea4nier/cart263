@@ -42,6 +42,12 @@ class ActionMenu {
             case 'Go':
                 this.scene.scene.start('bunny'); //switches to drawer scene
                 break;
+            case 'Escape':
+                this.scene.scene.start('maze'); //switches to drawer scene
+                break;
+            case 'Forget':
+                this.scene.scene.start('Intro'); //switches to drawer scene
+                break;
             case 'Fight':
                 this.scene.scene.start('battle'); //switches back to battle scene before
                 break;
