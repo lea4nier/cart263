@@ -2,7 +2,8 @@
 Escape The Story!
 Léa Fournier
 
-This is a prototype of the first scene of my Final Project.  
+In this game the main character becomes self aware 
+and goes on a journey to escape her fairytale story.    
 ***********************/
 "use strict";
 
@@ -13,7 +14,7 @@ let config = {
     physics: {
         default: 'arcade', // set the default physics system to Arcade Physics.
     },
-    scene: [Boot, Intro, Play, Drawer, Maze, Forrest, Glitch], // specify the scenes to be used in the game (Boot, Intro, Play, and Drawer)
+    scene: [Boot, Intro, Play, Drawer, Maze, Forrest, Glitch, Battle], // all the scenes used in the game
 
     gravity: { y: 200 } //set the gravity of the game world along the y-axis to 200 units.
 };
