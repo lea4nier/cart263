@@ -6,6 +6,10 @@ class Intro extends Phaser.Scene {
 
     //method to display book image and typewriter text
     create() {
+        // add instruction text at the bottom of the screen
+        this.instructionText = this.add.text(this.sys.game.config.width / 2, 575, 'headphones recommended for the best experience', { fontSize: '18px', fill: '#ffffff' });
+        this.instructionText.setOrigin(0.5, 0);
+
         //add voiceover audio
         this.backgroundMusic = this.sound.add('voice1', { loop: false }); //no loop
         this.backgroundMusic.play(); //play

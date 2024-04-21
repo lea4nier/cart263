@@ -28,17 +28,7 @@ class End extends Phaser.Scene {
         typewriter.startTypewriter();  //start typewriter
     }
 
-    // //method to create button
-    // createButton() {
-    //     const button = this.add.text(this.sys.game.config.width / 2, 500, 'click to play again', { fill: '#ffffff', fontSize: '24px' });
-    //     button.setOrigin(0.5);
-    //     button.setInteractive();
-    //     button.on('pointerdown', () => {
-    //         this.scene.start('play'); // Switch scene to "Play" when button is clicked
-    //     });
-    // }
 
-    //not currently being used 
     update() {
 
     }

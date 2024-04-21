@@ -1,4 +1,4 @@
-//scene of letter opening and displaying secret note
+//scene of letter opening and displaying secret note called Drawer
 class Drawer extends Phaser.Scene {
     constructor() {
         super({ key: 'Drawer' });
@@ -37,7 +37,7 @@ class Drawer extends Phaser.Scene {
             this.backgroundMusic = this.sound.add('voice4', { loop: false }); //no loop
             this.backgroundMusic.play(); //play
 
-            // Display the image called 'note'
+            // display the image called 'note'
             const note = this.add.image(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'note');
             note.setScale(10); //scale to be larger...I drew it too small oops
 
