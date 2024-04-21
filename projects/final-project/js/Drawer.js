@@ -31,13 +31,19 @@ class Drawer extends Phaser.Scene {
             typingSpeed: 100, //speed 
         });
 
-        // calls next action after the animation completes
+        // calls letter image to appear after the animation completes
         openSprite.on('animationcomplete', () => {
+            //add voiceover audio
+            this.backgroundMusic = this.sound.add('voice4', { loop: false }); //no loop
+            this.backgroundMusic.play(); //play
+
             // Display the image called 'note'
             const note = this.add.image(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'note');
             note.setScale(10); //scale to be larger...I drew it too small oops
+
             typewriter.startTypewriter();  //start typewriter
-            this.actionMenu = new ActionMenu(this, 600, 550, ['Go']);
+
+            this.actionMenu = new ActionMenu(this, 600, 550, ['Go']);  //display action menu item by calling ActionMenu class 
         });
     }
 

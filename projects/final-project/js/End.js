@@ -6,6 +6,9 @@ class End extends Phaser.Scene {
 
     //method to display book image and typewriter text
     create() {
+        //add voiceover audio
+        this.backgroundMusic = this.sound.add('voice5', { loop: false }); //no loop
+        this.backgroundMusic.play(); //play
         // Display the book image
         const book = this.add.image(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'book');
         book.setScale(2); // Adjust scale if needed

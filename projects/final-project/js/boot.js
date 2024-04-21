@@ -8,7 +8,7 @@ class Boot extends Phaser.Scene {
     preload() {
         //change this to change scene 
         this.load.on('complete', () => {
-            this.scene.start('play'); //game starts in "Intro" scene
+            this.scene.start('battle'); //game starts in "Intro" scene
         });
 
         //scene 1 - Intro - Assets
@@ -33,6 +33,7 @@ class Boot extends Phaser.Scene {
             endFrame: 7 //only 4 frames 
         });
         this.load.image('note', 'assets/images/note.png'); //secret note image that says "GET OUT"
+        this.load.audio('voice4', 'assets/sounds/voice4.m4a'); //narrator voiceover
 
         //scene 4 - Bunny - Assets 
         this.load.image('window', 'assets/images/window.png');  //window image with bunny 
@@ -78,6 +79,8 @@ class Boot extends Phaser.Scene {
         });
 
         this.load.image('dragon', 'assets/images/dragon.png'); //dragon image
+
+        this.load.audio('voice5', 'assets/sounds/voice5.m4a'); //narrator voiceover
 
     }
 
