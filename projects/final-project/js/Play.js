@@ -49,7 +49,9 @@ class Play extends Phaser.Scene {
         this.time.delayedCall(10000, () => {
 
             this.secret = this.add.sprite(300, 300, 'secret').setOrigin(0).setScale(2); // envelope image appears after 10 seconds
-
+            //add voiceover audio
+            this.backgroundMusic = this.sound.add('voice2', { loop: false }); //no loop
+            this.backgroundMusic.play(); //play
             // the action menu appears
             const actions = ['Open'];
             // create an instance of ActionMenu

@@ -8,11 +8,12 @@ class Boot extends Phaser.Scene {
     preload() {
         //change this to change scene 
         this.load.on('complete', () => {
-            this.scene.start('forrest'); //game starts in "Intro" scene
+            this.scene.start('play'); //game starts in "Intro" scene
         });
 
         //scene 1 - Intro - Assets
         this.load.image('book', 'assets/images/book.png');  //book image, I also use this in the final scene "End"
+        this.load.audio('voice1', 'assets/sounds/voice1.m4a'); //narrator voiceover
 
         //scene 2 - Play - Assets
         this.load.image('background', 'assets/images/attic.png');  //attic background image
@@ -23,6 +24,7 @@ class Boot extends Phaser.Scene {
             endFrame: 3 //only 4 frames 
         });
         this.load.image('secret', 'assets/images/secret.png');  //letter image
+        this.load.audio('voice2', 'assets/sounds/voice2.m4a'); //narrator voiceover
 
         //scene 3 - Drawer - Assets
         this.load.spritesheet('letter', 'assets/images/letter.png', {  //letter opening animation
