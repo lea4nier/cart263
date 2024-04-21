@@ -1,3 +1,4 @@
+//Class for Fight scene where player has 2 options to fight dragon 
 class Fight extends Phaser.Scene {
     constructor() {
         super({ key: 'fight' });
@@ -27,7 +28,7 @@ class Fight extends Phaser.Scene {
         this.fire.anims.play('fire', true); //play animation
 
         //create new instance of action menu
-        this.actionMenu = new ActionMenu(this, 230, 350, ['Fight', 'Laugh']); //2 buttons, fight or laugh
+        this.actionMenu = new ActionMenu(this, 230, 350, ['Fight', 'Laugh']); //2 buttons, fight or laugh, if the user presses "fight" it goes back to the scene before, if they press "laugh" it goes to end scene and they beat the game. 
     }
 
     update() {

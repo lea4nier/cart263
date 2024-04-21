@@ -4,7 +4,7 @@ class Boot extends Phaser.Scene {
         super({ key: 'boot' });
     }
 
-    //preload images and sprite assets 
+    //preload all images, sprite assets, and audio  
     preload() {
         //change this to change scene 
         this.load.on('complete', () => {

@@ -1,5 +1,6 @@
 //Forrest Scene
 // This is the class for the small platform mini game scene 
+////ATTRIBUTIONS: flashlight effect was created inspired by this tutorial by Tommy Leung: https://blog.ourcade.co/posts/2020/phaser3-fog-of-war-field-of-view-roguelike/ 
 class Forrest extends Phaser.Scene {
     constructor() {
         super({ key: 'forrest' }); // call the superclass constructor
@@ -15,13 +16,13 @@ class Forrest extends Phaser.Scene {
         this.background.setScale(800 / this.background.width, 600 / this.background.height); // scale the background 
 
         // add instruction text at the top of the screen
-        this.instructionText = this.add.text(this.sys.game.config.width / 2, 575, 'use arrow keys to move, use spacebar to jump', { fontSize: '18px', fill: '#ffffff' });
+        this.instructionText = this.add.text(this.sys.game.config.width / 2, 575, 'use arrow keys to move, use spacebar to jump', { fontSize: '18px', fill: '#ffffff' }); //set text positioning, size, and fill
         this.instructionText.setOrigin(0.5, 0);
 
 
-        // create avatar sprite
-        this.girl = this.physics.add.sprite(50, 400 - 40, 'girl'); // create avatar sprite with physics
-        this.girl.setDisplaySize(70, 70); // set the display size of the avatar sprite
+        // create girl sprite
+        this.girl = this.physics.add.sprite(50, 400 - 40, 'girl'); // create avatar sprite with physics for the girl character
+        this.girl.setDisplaySize(70, 70); // set the display size of the girl sprite
 
         // create animation for girl walking
         this.anims.create({
@@ -35,29 +36,25 @@ class Forrest extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys(); // create cursor keys for keyboard input
         this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //add spacebar input for jumping 
 
+        //set up platforms
         this.platforms = this.physics.add.staticGroup();
-
-        this.platforms = this.physics.add.staticGroup();
-        this.platforms.create(400, 550, 'platform').setScale(2).refreshBody(); // Lower main platform
+        this.platforms.create(400, 550, 'platform').setScale(2).refreshBody(); // lower main platform
         this.platforms.create(150, 400, 'platform').setScale(2).refreshBody();  // Platform on the mid left at mid-height
         this.platforms.create(50, 400, 'platform').setScale(2).refreshBody(); // platform far left mid height 
-        this.platforms.create(650, 400, 'platform').setScale(2).refreshBody();  // Platform on the right at mid-height
-        this.platforms.create(400, 250, 'platform').setScale(2).refreshBody();  // Higher platform in the middle
-
-        // Creating more platforms to make it easier to jump and navigate
-        this.platforms.create(250, 300, 'platform').setScale(2).refreshBody();  // Additional platform to break up large gaps
-        this.platforms.create(550, 300, 'platform');  // Additional platform to break up large gaps
+        this.platforms.create(650, 400, 'platform').setScale(2).refreshBody();  // platform on the right at mid-height
+        this.platforms.create(400, 250, 'platform').setScale(2).refreshBody();  // higher platform in the middle
+        this.platforms.create(250, 300, 'platform').setScale(2).refreshBody();  // additional platform to break up large gaps
+        this.platforms.create(550, 300, 'platform');  // additional platform to break up large gaps
 
 
-        // ollider between the avatar and platforms
+        // collider between the avatar and platforms
         this.physics.add.collider(this.girl, this.platforms);
 
         //add book image on lowest platform 
-        this.book = this.add.image(400, 530, 'book');
-        this.book.setScale(0.3); //resize 
+        this.book = this.add.image(400, 530, 'book'); //image positioning
+        this.book.setScale(0.3); //resize
 
-
-        // create render texture for flashlight effect
+        // create render texture for flashlight effect, I created this from my phaser game jam!
         this.rt = this.make.renderTexture({
             x: 100,
             y: 100,

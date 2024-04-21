@@ -1,4 +1,4 @@
-// ActionMenu class for options for player
+// ActionMenu class created to change scenes once the user presses a button
 class ActionMenu {
     //costructor for parameters 
     constructor(scene, x, y, actions) {
@@ -23,7 +23,7 @@ class ActionMenu {
             const button = this.scene.add.text(this.x + index * 100, this.y, action, { fill: '#ffffff' });
             //create hit area for button
             button.setInteractive();
-            //button is pressed when clicked
+            //button is pressed when clicked by cursor
             button.on('pointerdown', () => {
                 this.executeAction(action);
             });
@@ -40,13 +40,13 @@ class ActionMenu {
                 this.scene.scene.start('Drawer'); //switches to drawer scene
                 break;
             case 'Go':
-                this.scene.scene.start('bunny'); //switches to drawer scene
+                this.scene.scene.start('bunny'); //switches to bunny scene
                 break;
             case 'Escape':
-                this.scene.scene.start('maze'); //switches to drawer scene
+                this.scene.scene.start('maze'); //switches to maze scene
                 break;
             case 'Forget':
-                this.scene.scene.start('Intro'); //switches to drawer scene
+                this.scene.scene.start('Intro'); //switches to intro scene
                 break;
             case 'Fight':
                 this.scene.scene.start('battle'); //switches back to battle scene before
@@ -57,7 +57,6 @@ class ActionMenu {
             case 'Click to Play Again':
                 this.scene.scene.start('play'); //switches to play scene 
                 break;
-            // Add more cases for additional actions
         }
     }
 }

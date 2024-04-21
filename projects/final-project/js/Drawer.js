@@ -21,7 +21,7 @@ class Drawer extends Phaser.Scene {
         // play animation
         openSprite.anims.play('letter');
 
-        const text = "pssst...hey over here"; //typewriter text
+        const text = "pssst...hey over here"; // define typewriter text
 
         //create new instance of typewriter
         const typewriter = new Typewriter(this, 360, 500, text, {

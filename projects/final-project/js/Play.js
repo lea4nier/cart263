@@ -1,5 +1,6 @@
-//Play scene 
-// This is the class for the chores scene of my game
+//Class for Play scene 
+// This is the class for the chores scene of my game, most of this is the same as my prototype except there is audio now 
+//User chases bunnies until note appears 
 class Play extends Phaser.Scene {
     constructor() {
         super({ key: 'play' }); // call the superclass constructor
@@ -91,7 +92,7 @@ class Play extends Phaser.Scene {
     }
 
     // method to handle bunny collision
-    handleBunnyCollision(avatar, bunny) {  //parameters for method
+    handleBunnyCollision(avatar, bunny) {  //parameters 
         // make the bunny sprite invisible if there is collision
         bunny.setVisible(false);
         this.bunnies.getChildren().forEach(bunny => {
@@ -108,7 +109,7 @@ class Play extends Phaser.Scene {
                 const angle = Math.atan2(dy, dx);
 
                 // move bunny away from the avatar (add π to the angle to reverse the direction)
-                const speed = 50; // adjust this value to change the speed of the bunny
+                const speed = 50; // speed of bunnies 
                 bunny.setVelocityX(Math.cos(angle + Math.PI) * speed);
                 bunny.setVelocityY(Math.sin(angle + Math.PI) * speed);
             }

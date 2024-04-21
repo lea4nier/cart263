@@ -36,23 +36,24 @@ class Bunny extends Phaser.Scene {
             "You take the blue pill \n and the story continues as it is supposed to. ",
             "you take the red pill, \n and I will give you the chance to escape!",
         ];
-        this.displayNextLine(0, 10, 100);
+        this.displayNextLine(0, 10, 100); //position text on canvas 
     }
 
     //method to destroy text after each line calling typewriter class 
     displayNextLine(index, x, y) {
+        // check if the current index is less than the total number of lines
         if (index < this.lines.length) {
-            const line = this.lines[index];
-            const typewriter = new Typewriter(this, x, y, line, {
+            const line = this.lines[index];  // take the line of text from the 'lines' array based on the current index
+            const typewriter = new Typewriter(this, x, y, line, {  //create new instance of typewriter class 
                 fontSize: '24px',   //I have to change size and color by scene as I change it in different scenes 
                 fill: '#000000',
-                typingSpeed: 130,
+                typingSpeed: 130, //typing speed 
                 onComplete: () => {
                     typewriter.destroy(); // destroy the Typewriter after typing the line
-                    this.displayNextLine(index + 1, x, y); // Display the next line
+                    this.displayNextLine(index + 1, x, y); // display the next line
                 }
             });
-            typewriter.startTypewriter();
+            typewriter.startTypewriter();  //starts the current line of text 
         }
     }
     update() {

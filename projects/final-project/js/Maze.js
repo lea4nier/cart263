@@ -1,3 +1,4 @@
+//Class for Maze scene where main character is being chased by evil stepmother and user has to grab key to escape 
 class Maze extends Phaser.Scene {
     constructor() {
         super({ key: 'maze' });
@@ -5,14 +6,15 @@ class Maze extends Phaser.Scene {
 
     create() {
         // add instruction text at the bottom of the screen
-        this.instructionText = this.add.text(this.sys.game.config.width / 2, 575, 'use arrow keys to move', { fontSize: '18px', fill: '#ffffff' });
+        this.instructionText = this.add.text(this.sys.game.config.width / 2, 575, 'use arrow keys to move', { fontSize: '18px', fill: '#ffffff' }); //text attributes
         this.instructionText.setOrigin(0.5, 0);
+
         // add the evil stepmother to the scene
-        this.mother = this.physics.add.sprite(100, 100, 'mother');
+        this.mother = this.physics.add.sprite(100, 100, 'mother'); //where she appears on canvas
         this.mother.setDisplaySize(80, 80); //resize sprite
 
         // add the girl avatar to the scene
-        this.ella = this.physics.add.sprite(700, 500, 'ella');
+        this.ella = this.physics.add.sprite(700, 500, 'ella'); //where she appears on canvas
         this.ella.setDisplaySize(80, 80); //resize sprite
 
         // set up keyboard input for controlling the girl avatar (if needed)
@@ -21,8 +23,10 @@ class Maze extends Phaser.Scene {
         //add key image 
         this.key = this.physics.add.sprite(700, 100, 'key');
         this.key.setDisplaySize(30, 50); //resize image
+
         //number of steps taken by ella
         this.stepsTaken = 0;
+
         // flag to indicate if the mother should move, she only starts moving after user moves ella 
         this.motherCanMove = false;
 
