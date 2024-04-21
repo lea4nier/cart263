@@ -25,6 +25,7 @@ class Fight extends Phaser.Scene {
             repeat: 0
         });
         this.fire.anims.play('fire', true); //play animation
+
         //create new instance of action menu
         this.actionMenu = new ActionMenu(this, 230, 350, ['Fight', 'Laugh']); //2 buttons, fight or laugh
     }

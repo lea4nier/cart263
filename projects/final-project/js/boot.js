@@ -8,7 +8,7 @@ class Boot extends Phaser.Scene {
     preload() {
         //change this to change scene 
         this.load.on('complete', () => {
-            this.scene.start('fight'); //game starts in "Intro" scene
+            this.scene.start('Drawer'); //game starts in "Intro" scene
         });
 
         //scene 1 - Intro - Assets

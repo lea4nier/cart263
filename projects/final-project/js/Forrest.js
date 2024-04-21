@@ -1,5 +1,5 @@
-//Play scene 
-// This is the class for the chores scene of my game
+//Forrest Scene
+// This is the class for the small platform mini game scene 
 class Forrest extends Phaser.Scene {
     constructor() {
         super({ key: 'forrest' }); // call the superclass constructor

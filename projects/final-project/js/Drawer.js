@@ -21,11 +21,22 @@ class Drawer extends Phaser.Scene {
         // play animation
         openSprite.anims.play('letter');
 
+        const text = "pssst...hey over here"; //typewriter text
+
+        //create new instance of typewriter
+        const typewriter = new Typewriter(this, 360, 500, text, {
+            //typewriter text properties
+            fontSize: '32px', //size
+            fill: '#00ff00', //green
+            typingSpeed: 100, //speed 
+        });
+
         // calls next action after the animation completes
         openSprite.on('animationcomplete', () => {
             // Display the image called 'note'
             const note = this.add.image(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'note');
             note.setScale(10); //scale to be larger...I drew it too small oops
+            typewriter.startTypewriter();  //start typewriter
         });
     }
 

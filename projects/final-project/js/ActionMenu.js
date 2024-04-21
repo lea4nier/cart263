@@ -43,7 +43,7 @@ class ActionMenu {
                 this.scene.scene.start('battle');
                 break;
             case 'Laugh':
-                this.scene.scene.start('Fight');
+                this.scene.scene.start('end');
                 break;
             // Add more cases for additional actions
         }
